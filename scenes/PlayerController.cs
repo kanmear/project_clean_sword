@@ -25,36 +25,34 @@ public partial class PlayerController : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 
-		sprite2D.Play(Mathf.Abs(velocity.X) > 1 ? "running" : "idle");
-		if (Mathf.Abs(velocity.Y) > 1)
-			sprite2D.Play("jumping");
+		if (!IsOnFloor()) velocity.Y += gravity * (float)delta;
 
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
+		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocity.Y = jumpVelocity;
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor())
-		{
-			velocity.Y = jumpVelocity;
-		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("left", "right", "up", "down");
 		if (direction != Vector2.Zero)
-		{
 			velocity.X = direction.X * speed;
-		}
 		else
-		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, smoothDelta);
-		}
 
 		Velocity = velocity;
 		MoveAndSlide();
+		
+		Animate(velocity);
+	}
 
-		// Handle sprite rotation
+	private void Animate(Vector2 velocity)
+	{
+		sprite2D.Play(Mathf.Abs(velocity.X) > 1 ? "running" : "idle");
+
+		if (!IsOnFloor()) 
+		{
+			if (velocity.Y < 0)
+				sprite2D.Play("jumping");
+			else if (velocity.Y > 0)
+				sprite2D.Play("falling");
+		}
+
 		sprite2D.FlipH = velocity.X switch
 		{
 			> 0 => false,

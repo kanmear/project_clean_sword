@@ -1,9 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=19 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Texture2D" uid="uid://npgj33lqluuj" path="res://sprites/player/ronin_idle.png" id="1_l1p6p"]
 [ext_resource type="Script" path="res://scenes/PlayerController.cs" id="1_sx70g"]
+[ext_resource type="Texture2D" uid="uid://cxqwj6l7kadlx" path="res://sprites/player/ronin_falling.png" id="2_alsj8"]
 [ext_resource type="Texture2D" uid="uid://cr31cc7j06voo" path="res://sprites/player/ronin_jump_h.png" id="3_7xx8t"]
 [ext_resource type="Texture2D" uid="uid://bpftlmwgraiqu" path="res://sprites/player/ronin_run.png" id="3_jqhln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wb3h"]
+atlas = ExtResource("2_alsj8")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oao56"]
 atlas = ExtResource("1_l1p6p")
@@ -47,6 +52,14 @@ region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rubie"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wb3h")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oao56")
@@ -99,7 +112,7 @@ size = Vector2(19, 31)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_sx70g")
 speed = 250.0
-jumpVelocity = -500.0
+jumpVelocity = -550.0
 smoothDelta = 30.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
