@@ -18,6 +18,14 @@ config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 
 project/assembly_name="Project Clean Sword"
 
+[file_customization]
+
+folder_colors={
+"res://scenes/": "orange",
+"res://scripts/": "purple",
+"res://sprites/": "pink"
+}
+
 [input]
 
 jump={
@@ -48,4 +56,4 @@ down={
 
 [physics]
 
-2d/default_gravity=1500.0
+2d/default_gravity=1200.0

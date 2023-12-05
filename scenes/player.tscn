@@ -112,7 +112,7 @@ size = Vector2(19, 31)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_sx70g")
 speed = 250.0
-jumpVelocity = -550.0
+jumpVelocity = -600.0
 smoothDelta = 30.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -124,3 +124,6 @@ speed_scale = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_fkbup")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
