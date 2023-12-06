@@ -1,10 +1,35 @@
-[gd_scene load_steps=19 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=26 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Texture2D" uid="uid://npgj33lqluuj" path="res://sprites/player/ronin_idle.png" id="1_l1p6p"]
 [ext_resource type="Script" path="res://scenes/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Texture2D" uid="uid://cxqwj6l7kadlx" path="res://sprites/player/ronin_falling.png" id="2_alsj8"]
+[ext_resource type="Texture2D" uid="uid://ono18y81aaww" path="res://sprites/player/ronin_dash.png" id="2_br33k"]
 [ext_resource type="Texture2D" uid="uid://cr31cc7j06voo" path="res://sprites/player/ronin_jump_h.png" id="3_7xx8t"]
 [ext_resource type="Texture2D" uid="uid://bpftlmwgraiqu" path="res://sprites/player/ronin_run.png" id="3_jqhln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xywp"]
+atlas = ExtResource("2_br33k")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh5fm"]
+atlas = ExtResource("2_br33k")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suf7y"]
+atlas = ExtResource("2_br33k")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbbx5"]
+atlas = ExtResource("2_br33k")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssxk1"]
+atlas = ExtResource("2_br33k")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6qos"]
+atlas = ExtResource("2_br33k")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wb3h"]
 atlas = ExtResource("2_alsj8")
@@ -52,6 +77,29 @@ region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rubie"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xywp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh5fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suf7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbbx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssxk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6qos")
+}],
+"loop": true,
+"name": &"dashing",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7wb3h")
@@ -118,7 +166,8 @@ smoothDelta = 30.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rubie")
-animation = &"running"
+animation = &"dashing"
+frame_progress = 0.0284681
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
