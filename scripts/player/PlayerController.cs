@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ProjectCleanSword.scenes;
+namespace ProjectCleanSword.scripts.player;
 
 public partial class PlayerController : CharacterBody2D
 {
