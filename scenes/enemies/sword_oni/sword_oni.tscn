@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c38pcanxrvj1r"]
+
+[ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://sprites/enemies/sword_oni/idle.png" id="1_n0vaf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eida"]
+atlas = ExtResource("1_n0vaf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_357nd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eida")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg8ar"]
+size = Vector2(21, 31)
+
+[node name="SwordOni" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_357nd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, 0.5)
+shape = SubResource("RectangleShape2D_rg8ar")
