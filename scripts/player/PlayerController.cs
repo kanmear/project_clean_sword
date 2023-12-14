@@ -29,9 +29,11 @@ public partial class PlayerController : CharacterBody2D
 
 		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocity.Y = jumpVelocity;
 
-		Vector2 direction = Input.GetVector("left", "right", "up", "down");
-		if (direction != Vector2.Zero)
-			velocity.X = direction.X * speed;
+		bool leftInput = Input.IsActionPressed("left");
+		bool rightInput = Input.IsActionPressed("right");
+		
+		if (leftInput ^ rightInput)
+			velocity.X = speed * (leftInput ? -1 : 1);
 		else
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, smoothDelta);
 
