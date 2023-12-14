@@ -1,31 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://c38pcanxrvj1r"]
+[gd_scene load_steps=10 format=3 uid="uid://c38pcanxrvj1r"]
 
-[ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://sprites/enemies/sword_oni/idle.png" id="1_n0vaf"]
+[ext_resource type="Texture2D" uid="uid://c6q4d4v8mr6hh" path="res://sprites/proto_art/sword_oni/oni_idle.png" id="1_txmxx"]
+[ext_resource type="Texture2D" uid="uid://m2vu1lmqo626" path="res://sprites/proto_art/sword_oni/oni_run.png" id="2_jt0uo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6eida"]
-atlas = ExtResource("1_n0vaf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hekfi"]
+atlas = ExtResource("1_txmxx")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l67je"]
+atlas = ExtResource("2_jt0uo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nolt"]
+atlas = ExtResource("2_jt0uo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58xeg"]
+atlas = ExtResource("2_jt0uo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo66a"]
+atlas = ExtResource("2_jt0uo")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_357nd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6eida")
+"texture": SubResource("AtlasTexture_hekfi")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l67je")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nolt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58xeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo66a")
+}],
+"loop": true,
+"name": &"running",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rg8ar"]
-size = Vector2(21, 31)
+size = Vector2(16, 29)
 
 [node name="SwordOni" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_357nd")
+animation = &"idle"
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5, 0.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_rg8ar")

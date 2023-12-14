@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6vrevelrbq3x"]
+[gd_scene load_steps=7 format=3 uid="uid://c6vrevelrbq3x"]
 
 [ext_resource type="Texture2D" uid="uid://bb2j7q8v54t84" path="res://sprites/background/placeholder.png" id="1_d8772"]
 [ext_resource type="Texture2D" uid="uid://dm0bd7py3sxn1" path="res://sprites/tiles/tilemap.png" id="2_j2i4w"]
 [ext_resource type="PackedScene" uid="uid://htncbmesy7qc" path="res://scenes/player/player.tscn" id="3_celh8"]
+[ext_resource type="PackedScene" uid="uid://c38pcanxrvj1r" path="res://scenes/enemies/sword_oni/sword_oni.tscn" id="4_i2y32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y40pq"]
 texture = ExtResource("2_j2i4w")
@@ -53,3 +54,6 @@ layer_0/tile_data = PackedInt32Array(1048576, 0, 0, 1048577, 0, 0, 1048578, 0, 0
 
 [node name="Player" parent="." instance=ExtResource("3_celh8")]
 position = Vector2(528, 496)
+
+[node name="SwordOni" parent="." instance=ExtResource("4_i2y32")]
+position = Vector2(272, 496)
