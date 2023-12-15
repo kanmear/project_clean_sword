@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=23 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://scripts/player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Texture2D" uid="uid://dl5m0aegc5ui8" path="res://sprites/proto_art/player/player_dash.png" id="2_j5jf3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://epxqo3ie001v" path="res://sprites/proto_art/player/player_idle.png" id="4_rfcek"]
 [ext_resource type="Texture2D" uid="uid://bva45ragy255u" path="res://sprites/proto_art/player/player_jump.png" id="5_wvg8j"]
 [ext_resource type="Texture2D" uid="uid://fbfkouuq3j0e" path="res://sprites/proto_art/player/player_run.png" id="6_hhvet"]
+[ext_resource type="Script" path="res://scripts/player/PlayerAnimator.cs" id="7_jrb1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2dk3"]
 atlas = ExtResource("2_j5jf3")
@@ -135,11 +136,13 @@ speed = 250.0
 jumpVelocity = -600.0
 smoothDelta = 30.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("characterBody2D")]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rubie")
 animation = &"idle"
 speed_scale = 2.0
+script = ExtResource("7_jrb1d")
+characterBody2D = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)

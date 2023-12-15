@@ -56,4 +56,4 @@ layer_0/tile_data = PackedInt32Array(1048576, 0, 0, 1048577, 0, 0, 1048578, 0, 0
 position = Vector2(528, 496)
 
 [node name="SwordOni" parent="." instance=ExtResource("4_i2y32")]
-position = Vector2(272, 496)
+position = Vector2(368, 496)
