@@ -135,6 +135,7 @@ script = ExtResource("1_sx70g")
 speed = 250.0
 jumpVelocity = -600.0
 smoothDelta = 30.0
+jumpWindow = 0.1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("characterBody2D")]
 texture_filter = 1
