@@ -16,10 +16,20 @@ public partial class PlayerController : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-		var isAbleToJump = IsAbleToJump((float)delta);
+		HandleVerticalMovement(delta);
+		HandleHorizontalMovement();
 
-		if (!IsOnFloor()) velocity.Y += gravity * (float)delta;
+		MoveAndSlide();
+	}
+
+	private void HandleVerticalMovement(double delta)
+	{
+		var velocity = Velocity;
+		
+		var isOnFloor = IsOnFloor();
+		var isAbleToJump = IsAbleToJump((float)delta, isOnFloor);
+
+		if (!isOnFloor) velocity.Y += gravity * (float)delta;
 		else jumpUsed = false;
 
 		if (!jumpUsed && Input.IsActionJustPressed("jump") && isAbleToJump)
@@ -27,7 +37,14 @@ public partial class PlayerController : CharacterBody2D
 			velocity.Y = jumpVelocity;
 			jumpUsed = true;
 		}
+		
+		Velocity = velocity;
+	}
 
+	private void HandleHorizontalMovement()
+	{
+		var velocity = Velocity;
+		
 		bool leftInput = Input.IsActionPressed("left");
 		bool rightInput = Input.IsActionPressed("right");
 		
@@ -35,14 +52,12 @@ public partial class PlayerController : CharacterBody2D
 			velocity.X = speed * (leftInput ? -1 : 1);
 		else
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, smoothDelta);
-
+		
 		Velocity = velocity;
-		MoveAndSlide();
 	}
 
-	private bool IsAbleToJump(float delta)
+	private bool IsAbleToJump(float delta, bool isOnFloor)
 	{
-		var isOnFloor = IsOnFloor();
 		if (!isOnFloor)
 		{
 			timeSinceLeftFloor += delta;
