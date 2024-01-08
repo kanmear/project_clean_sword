@@ -1,33 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://c38pcanxrvj1r"]
+[gd_scene load_steps=13 format=3 uid="uid://c38pcanxrvj1r"]
 
-[ext_resource type="Texture2D" uid="uid://c6q4d4v8mr6hh" path="res://sprites/proto_art/sword_oni/oni_idle.png" id="1_txmxx"]
-[ext_resource type="Texture2D" uid="uid://m2vu1lmqo626" path="res://sprites/proto_art/sword_oni/oni_run.png" id="2_jt0uo"]
+[ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://sprites/enemies/sword_oni/idle.png" id="1_heah0"]
+[ext_resource type="Texture2D" uid="uid://d0l7s4e00jvt3" path="res://sprites/enemies/sword_oni/sword_oni_run-Sheet.png" id="2_ykfvy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hekfi"]
-atlas = ExtResource("1_txmxx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nys3m"]
+atlas = ExtResource("2_ykfvy")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l67je"]
-atlas = ExtResource("2_jt0uo")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nolt"]
-atlas = ExtResource("2_jt0uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uva1d"]
+atlas = ExtResource("2_ykfvy")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_58xeg"]
-atlas = ExtResource("2_jt0uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sflfo"]
+atlas = ExtResource("2_ykfvy")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yo66a"]
-atlas = ExtResource("2_jt0uo")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl34c"]
+atlas = ExtResource("2_ykfvy")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx274"]
+atlas = ExtResource("2_ykfvy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp4pb"]
+atlas = ExtResource("2_ykfvy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xtm6"]
+atlas = ExtResource("2_ykfvy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ketrw"]
+atlas = ExtResource("2_ykfvy")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_357nd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hekfi")
+"texture": ExtResource("1_heah0")
 }],
 "loop": true,
 "name": &"idle",
@@ -35,16 +47,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l67je")
+"texture": SubResource("AtlasTexture_nys3m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nolt")
+"texture": SubResource("AtlasTexture_uva1d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_58xeg")
+"texture": SubResource("AtlasTexture_sflfo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yo66a")
+"texture": SubResource("AtlasTexture_vl34c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx274")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp4pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xtm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ketrw")
 }],
 "loop": true,
 "name": &"running",
@@ -52,7 +76,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rg8ar"]
-size = Vector2(16, 29)
+size = Vector2(20, 31)
 
 [node name="SwordOni" type="CharacterBody2D"]
 
@@ -63,5 +87,5 @@ animation = &"idle"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_rg8ar")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fbfkouuq3j0e"
-path="res://.godot/imported/player_run.png-71bc81aab8cd082caf2338c823a8d997.ctex"
+uid="uid://d0l7s4e00jvt3"
+path="res://.godot/imported/sword_oni_run-Sheet.png-04b88a06d2d3c612123127d28b0026cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/proto_art/player/player_run.png"
-dest_files=["res://.godot/imported/player_run.png-71bc81aab8cd082caf2338c823a8d997.ctex"]
+source_file="res://sprites/enemies/sword_oni/sword_oni_run-Sheet.png"
+dest_files=["res://.godot/imported/sword_oni_run-Sheet.png-04b88a06d2d3c612123127d28b0026cc.ctex"]
 
 [params]
 
