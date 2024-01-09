@@ -4,14 +4,23 @@ namespace ProjectCleanSword.scripts.player;
 
 public partial class PlayerController : CharacterBody2D
 {
+	#region MovementParameters
+
 	[Export] private float speed = 300.0f;
+	[Export] private float dashSpeed = 900.0f;
 	[Export] private float jumpVelocity = -400.0f;
 	[Export] private float smoothDelta = 14f;
 	[Export] private float jumpWindow = 0.1f;
 
+	#endregion
+
+	[Export] private Sprite2D sprite2D;
+
 	#region InternalFields
 
 	private Vector2 velocity;
+	private bool isOnFloor;
+	private float fDelta;
 
 	private float timeSinceLeftFloor;
 	private bool isJumpUsed;
@@ -19,25 +28,71 @@ public partial class PlayerController : CharacterBody2D
 	private float attackCooldown = 0.5f;
 	private float timeSinceAttack;
 
+	private float timeSinceDash;
+	private float impulse;
+	private float dashCooldown = 0.6f;
+
+	private bool isControllable = true;
+
 	#endregion
 	
+	//TODO to be replaced with states
 	public bool IsAttacking;
+	public bool IsDashing;
 
 	//NOTE Get the gravity from the project settings to be synced with RigidBody nodes.
 	private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var fDelta = (float) delta;
+		velocity = Velocity;
+		isOnFloor = IsOnFloor();
+		fDelta = (float) delta;
 		
-		HandleVerticalMovement(fDelta);
+		HandleVerticalMovement();
 		HandleHorizontalMovement();
-		HandleAttacking(fDelta);
+
+		HandleDashing();
+		
+		HandleAttacking();
 
 		MoveAndSlide();
 	}
 
-	private void HandleAttacking(float delta)
+	private void HandleDashing()
+	{
+		if (isOnFloor && isControllable && Input.IsActionJustPressed("dash"))
+		{
+			isControllable = false;
+			IsDashing = true;
+			impulse = dashSpeed;
+		}
+
+		if (IsDashing)
+		{
+			velocity.X = impulse * (sprite2D.FlipH ? -1f : 1f);
+			impulse -= fDelta * 2000f;
+			if (impulse <= speed)
+			{
+				if (isOnFloor)
+				{
+					if (impulse <= 0) impulse = 0;
+				}
+				else impulse = speed;
+			}
+			
+			Velocity = velocity;
+			
+			timeSinceDash += fDelta;
+			if (!(timeSinceDash >= dashCooldown)) return;
+			
+			isControllable = true;
+			IsDashing = false;
+			timeSinceDash = 0f;
+		}
+	}
+
+	private void HandleAttacking()
 	{
 		if (!IsAttacking && IsOnFloor() && Input.IsActionJustPressed("attack")) 
 			IsAttacking = true;
@@ -45,7 +100,7 @@ public partial class PlayerController : CharacterBody2D
 		if (!IsAttacking) return;
 		
 		Velocity = Vector2.Zero;
-		timeSinceAttack += delta;
+		timeSinceAttack += fDelta;
 		
 		if (!(timeSinceAttack >= attackCooldown)) return;
 			
@@ -53,14 +108,11 @@ public partial class PlayerController : CharacterBody2D
 		timeSinceAttack = 0f;
 	}
 
-	private void HandleVerticalMovement(float delta)
+	private void HandleVerticalMovement()
 	{
-		velocity = Velocity;
-		
-		var isOnFloor = IsOnFloor();
-		var isAbleToJump = IsAbleToJump(delta, isOnFloor);
+		var isAbleToJump = IsAbleToJump();
 
-		if (!isOnFloor) velocity.Y += gravity * delta;
+		if (!isOnFloor) velocity.Y += gravity * fDelta;
 		else isJumpUsed = false;
 
 		if (!isJumpUsed && Input.IsActionJustPressed("jump") && isAbleToJump)
@@ -87,11 +139,11 @@ public partial class PlayerController : CharacterBody2D
 		Velocity = velocity;
 	}
 
-	private bool IsAbleToJump(float delta, bool isOnFloor)
+	private bool IsAbleToJump()
 	{
 		if (!isOnFloor)
 		{
-			timeSinceLeftFloor += delta;
+			timeSinceLeftFloor += fDelta;
 			return timeSinceLeftFloor <= jumpWindow;
 		}
 

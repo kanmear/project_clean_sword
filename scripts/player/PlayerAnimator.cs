@@ -16,7 +16,13 @@ public partial class PlayerAnimator : AnimationPlayer
 			Play("attacking_idle");
 			return;
 		}
-		
+
+		if (playerController.IsDashing && playerController.IsOnFloor())
+		{
+			Play("dashing");
+			return;
+		}
+
 		var velocity = playerController.Velocity;
 		var isOnFloor = playerController.IsOnFloor();
 		

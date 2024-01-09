@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=18 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://scripts/player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Texture2D" uid="uid://b50upnj3x7jfl" path="res://sprites/player/ronin_attack.png" id="2_bslc6"]
+[ext_resource type="Texture2D" uid="uid://ono18y81aaww" path="res://sprites/player/ronin_dash.png" id="2_gpb5c"]
 [ext_resource type="Texture2D" uid="uid://cxqwj6l7kadlx" path="res://sprites/player/ronin_falling.png" id="3_upqxw"]
 [ext_resource type="Texture2D" uid="uid://npgj33lqluuj" path="res://sprites/player/ronin_idle.png" id="4_ehkcj"]
 [ext_resource type="Texture2D" uid="uid://cr31cc7j06voo" path="res://sprites/player/ronin_jump_h.png" id="5_l8kk4"]
@@ -21,7 +22,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
@@ -67,12 +68,12 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -124,7 +125,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -176,7 +177,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -228,7 +229,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0]
 }
 tracks/1/type = "value"
@@ -311,7 +312,7 @@ tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/path = NodePath(".:frame")
-tracks/3/interp = 1
+tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
@@ -320,10 +321,63 @@ tracks/3/keys = {
 "values": [1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_8de5q"]
+resource_name = "dashing"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_gpb5c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vo7j"]
 _data = {
 "RESET": SubResource("Animation_g1poo"),
 "attacking_idle": SubResource("Animation_ot7nw"),
+"dashing": SubResource("Animation_8de5q"),
 "falling": SubResource("Animation_2g4gn"),
 "idle": SubResource("Animation_ftd73"),
 "jumping": SubResource("Animation_k7qqf"),
@@ -333,13 +387,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkbup"]
 size = Vector2(20, 31)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite2D")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
-speed = 250.0
-jumpVelocity = -600.0
+speed = 200.0
+jumpVelocity = -550.0
 smoothDelta = 30.0
 jumpWindow = 0.08
+sprite2D = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
