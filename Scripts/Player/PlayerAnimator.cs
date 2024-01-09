@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ProjectCleanSword.scripts.player;
+namespace ProjectCleanSword.Scripts.Player;
 
 public partial class PlayerAnimator : AnimationPlayer
 {

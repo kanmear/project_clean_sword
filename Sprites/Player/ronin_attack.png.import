@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0l7s4e00jvt3"
-path="res://.godot/imported/sword_oni_run-Sheet.png-04b88a06d2d3c612123127d28b0026cc.ctex"
+uid="uid://b50upnj3x7jfl"
+path="res://.godot/imported/ronin_attack.png-52e817a3aa1c7a7aaf1528494a95b3d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/sword_oni/sword_oni_run-Sheet.png"
-dest_files=["res://.godot/imported/sword_oni_run-Sheet.png-04b88a06d2d3c612123127d28b0026cc.ctex"]
+source_file="res://Sprites/Player/ronin_attack.png"
+dest_files=["res://.godot/imported/ronin_attack.png-52e817a3aa1c7a7aaf1528494a95b3d7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsfldr0ata83s"
-path="res://.godot/imported/idle.png-280e36b89390a291e50900ae3d6496b8.ctex"
+uid="uid://ono18y81aaww"
+path="res://.godot/imported/ronin_dash.png-1f26a3129179ed74edf3d3b6e878160e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/sword_oni/idle.png"
-dest_files=["res://.godot/imported/idle.png-280e36b89390a291e50900ae3d6496b8.ctex"]
+source_file="res://Sprites/Player/ronin_dash.png"
+dest_files=["res://.godot/imported/ronin_dash.png-1f26a3129179ed74edf3d3b6e878160e.ctex"]
 
 [params]
 

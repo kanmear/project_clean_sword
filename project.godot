@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Clean Sword"
-run/main_scene="res://scenes/world/level.tscn"
+run/main_scene="res://Scenes/World/Level.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 
 [dotnet]
@@ -21,9 +21,9 @@ project/assembly_name="Project Clean Sword"
 [file_customization]
 
 folder_colors={
-"res://scenes/": "orange",
-"res://scripts/": "purple",
-"res://sprites/": "pink"
+"res://Scenes/": "orange",
+"res://Scripts/": "purple",
+"res://Sprites/": "pink"
 }
 
 [input]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b50upnj3x7jfl"
-path="res://.godot/imported/ronin_attack.png-935d4d006e1355a7afd87ae42f5bdf5b.ctex"
+uid="uid://dsfldr0ata83s"
+path="res://.godot/imported/idle.png-aee918378adbe7ed38df0e558383ce5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/ronin_attack.png"
-dest_files=["res://.godot/imported/ronin_attack.png-935d4d006e1355a7afd87ae42f5bdf5b.ctex"]
+source_file="res://Sprites/Enemies/SwordOni/idle.png"
+dest_files=["res://.godot/imported/idle.png-aee918378adbe7ed38df0e558383ce5a.ctex"]
 
 [params]
 

@@ -1,45 +1,45 @@
 [gd_scene load_steps=13 format=3 uid="uid://c38pcanxrvj1r"]
 
-[ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://sprites/enemies/sword_oni/idle.png" id="1_heah0"]
-[ext_resource type="Texture2D" uid="uid://d0l7s4e00jvt3" path="res://sprites/enemies/sword_oni/sword_oni_run-Sheet.png" id="2_ykfvy"]
+[ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://Sprites/Enemies/SwordOni/idle.png" id="1_tesmn"]
+[ext_resource type="Texture2D" uid="uid://d0l7s4e00jvt3" path="res://Sprites/Enemies/SwordOni/sword_oni_run-Sheet.png" id="2_45s0o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nys3m"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uva1d"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sflfo"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl34c"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx274"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cp4pb"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xtm6"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ketrw"]
-atlas = ExtResource("2_ykfvy")
+atlas = ExtResource("2_45s0o")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_357nd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_heah0")
+"texture": ExtResource("1_tesmn")
 }],
 "loop": true,
 "name": &"idle",

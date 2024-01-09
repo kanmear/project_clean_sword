@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2j7q8v54t84"
-path="res://.godot/imported/placeholder.png-ec977372e8224bda167fddadda2563d7.ctex"
+uid="uid://bpftlmwgraiqu"
+path="res://.godot/imported/ronin_run.png-496a0b82cc193b20bfc601e3820e1556.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/background/placeholder.png"
-dest_files=["res://.godot/imported/placeholder.png-ec977372e8224bda167fddadda2563d7.ctex"]
+source_file="res://Sprites/Player/ronin_run.png"
+dest_files=["res://.godot/imported/ronin_run.png-496a0b82cc193b20bfc601e3820e1556.ctex"]
 
 [params]
 

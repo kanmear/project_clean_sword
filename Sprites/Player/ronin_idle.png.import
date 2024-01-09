@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxqwj6l7kadlx"
-path="res://.godot/imported/ronin_falling.png-bb312af66d0e00f86dd4b8e420196f53.ctex"
+uid="uid://npgj33lqluuj"
+path="res://.godot/imported/ronin_idle.png-e7b761f4f7e578474f3f2d682b9d6caf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/ronin_falling.png"
-dest_files=["res://.godot/imported/ronin_falling.png-bb312af66d0e00f86dd4b8e420196f53.ctex"]
+source_file="res://Sprites/Player/ronin_idle.png"
+dest_files=["res://.godot/imported/ronin_idle.png-e7b761f4f7e578474f3f2d682b9d6caf.ctex"]
 
 [params]
 
