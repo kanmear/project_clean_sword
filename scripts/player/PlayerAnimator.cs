@@ -4,15 +4,21 @@ namespace ProjectCleanSword.scripts.player;
 
 public partial class PlayerAnimator : AnimationPlayer
 {
-	[Export] private CharacterBody2D characterBody2D;
+	[Export] private PlayerController playerController;
 	[Export] private Sprite2D sprite2D;
 
 	public override void _Process(double delta) => Animate();
 
 	private void Animate()
 	{
-		var velocity = characterBody2D.Velocity;
-		var isOnFloor = characterBody2D.IsOnFloor();
+		if (playerController.IsAttacking)
+		{
+			Play("attacking_idle");
+			return;
+		}
+		
+		var velocity = playerController.Velocity;
+		var isOnFloor = playerController.IsOnFloor();
 		
 		Play(Mathf.Abs(velocity.X) > 1 ? "running" : "idle");
 
