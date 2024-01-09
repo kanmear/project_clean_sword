@@ -2,9 +2,10 @@ using Godot;
 
 namespace ProjectCleanSword.scripts.player;
 
-public partial class PlayerAnimator : AnimatedSprite2D
+public partial class PlayerAnimator : AnimationPlayer
 {
 	[Export] private CharacterBody2D characterBody2D;
+	[Export] private Sprite2D sprite2D;
 
 	public override void _Process(double delta) => Animate();
 
@@ -23,11 +24,11 @@ public partial class PlayerAnimator : AnimatedSprite2D
 				Play("falling");
 		}
 
-		FlipH = velocity.X switch
+		sprite2D.FlipH = velocity.X switch
 		{
 			> 0 => false,
 			< 0 => true,
-			_ => FlipH
+			_ => sprite2D.FlipH
 		};
 	}
 }
