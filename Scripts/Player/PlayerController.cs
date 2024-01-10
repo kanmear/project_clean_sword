@@ -43,6 +43,11 @@ public partial class PlayerController : CharacterBody2D
 	//NOTE Get the gravity from the project settings to be synced with RigidBody nodes.
 	private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	public override void _Ready()
+	{
+		Main.Player = this;
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		velocity = Velocity;

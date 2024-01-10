@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c38pcanxrvj1r"]
+[gd_scene load_steps=15 format=3 uid="uid://c38pcanxrvj1r"]
 
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.cs" id="1_i0yjx"]
 [ext_resource type="Texture2D" uid="uid://dsfldr0ata83s" path="res://Sprites/Enemies/SwordOni/idle.png" id="1_tesmn"]
 [ext_resource type="Texture2D" uid="uid://d0l7s4e00jvt3" path="res://Sprites/Enemies/SwordOni/sword_oni_run-Sheet.png" id="2_45s0o"]
+[ext_resource type="Script" path="res://Scripts/Enemy/EnemyAnimator.cs" id="4_cakmq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nys3m"]
 atlas = ExtResource("2_45s0o")
@@ -80,12 +82,16 @@ size = Vector2(20, 31)
 
 [node name="SwordOni" type="CharacterBody2D"]
 collision_layer = 4
+script = ExtResource("1_i0yjx")
+MaxHealth = 100
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("enemy")]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_357nd")
 animation = &"idle"
 speed_scale = 2.0
+script = ExtResource("4_cakmq")
+enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0.5)

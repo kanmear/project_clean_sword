@@ -6,4 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>ProjectCleanSword</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Enemy\EnemyTypes\" />
+  </ItemGroup>
 </Project>
