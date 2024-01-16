@@ -1,157 +1,92 @@
-using Godot;
-
 namespace ProjectCleanSword.Scripts.Player;
 
-public partial class PlayerController : CharacterBody2D
-{
-	#region MovementParameters
+using Godot;
+using Interfaces;
+using StateMachine.Player;
+using StateMachine.Player.ConcreteStates;
 
-	[Export] private float speed = 300.0f;
-	[Export] private float dashSpeed = 900.0f;
-	[Export] private float jumpVelocity = -400.0f;
-	[Export] private float smoothDelta = 14f;
+public partial class PlayerController : CharacterBody2D, IMovable
+{
+	#region IMovable fields
+
+	[Export] public float MovingSpeed { get; set; } = 300.0f;
+	[Export] public float DashImpulse = 900.0f;
+	[Export] public float JumpImpulse = -400.0f;
+	[Export] public float SmoothDelta = 14f;
 	[Export] private float jumpWindow = 0.1f;
+	public bool IsFacingRight { get; set; } = true; 
 
 	#endregion
 
 	[Export] private Sprite2D sprite2D;
 
-	#region InternalFields
+	#region Internal fields
 
 	private Vector2 velocity;
-	private bool isOnFloor;
 	private float fDelta;
 
 	private float timeSinceLeftFloor;
-	private bool isJumpUsed;
 	
-	private float attackCooldown = 0.5f;
-	private float timeSinceAttack;
+	#endregion
 
-	private float timeSinceDash;
-	private float impulse;
-	private float dashCooldown = 0.6f;
+	#region StateMachine fields
 
-	private bool isControllable = true;
+	[Export] private string currentState;
+	public PlayerStateMachine StateMachine { get; private set; }	
+	public DefaultPlayerState DefaultPlayerState { get; private set; }	
+	public RunningPlayerState RunningPlayerState { get; private set; }	
+	public JumpingPlayerState JumpingPlayerState { get; private set; }	
+	public FallingPlayerState FallingPlayerState { get; private set; }	
+	public DashingPlayerState DashingPlayerState { get; private set; }	
+	public AttackingPlayerState AttackingPlayerState { get; private set; }
 
 	#endregion
 	
-	//TODO to be replaced with states
-	public bool IsAttacking;
-	public bool IsDashing;
-
-	//NOTE Get the gravity from the project settings to be synced with RigidBody nodes.
-	private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
 	public override void _Ready()
 	{
 		Main.Player = this;
+
+		StateMachine = new PlayerStateMachine();
+		DefaultPlayerState = new DefaultPlayerState(this, StateMachine);
+		RunningPlayerState = new RunningPlayerState(this, StateMachine);
+		JumpingPlayerState = new JumpingPlayerState(this, StateMachine);
+		FallingPlayerState = new FallingPlayerState(this, StateMachine);
+		DashingPlayerState = new DashingPlayerState(this, StateMachine);
+		AttackingPlayerState = new AttackingPlayerState(this, StateMachine);
+		
+		StateMachine.Initialize(DefaultPlayerState);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		velocity = Velocity;
-		isOnFloor = IsOnFloor();
 		fDelta = (float) delta;
 		
-		HandleVerticalMovement();
-		HandleHorizontalMovement();
+		StateMachine.CurrentState.PhysicsProcess(fDelta);
+		currentState = StateMachine.CurrentState.Name.ToString(); //NOTE for debug
 
-		HandleDashing();
-		
-		HandleAttacking();
+		IsAbleToJump();
+	}
 
+	public override void _Process(double delta)
+	{
+		StateMachine.CurrentState.FrameProcess((float) delta);
+		IsFacingRight = !sprite2D.FlipH;
+	}
+
+	public void Move(Vector2 vel)
+	{
+        Velocity = vel;
 		MoveAndSlide();
 	}
 
-	private void HandleDashing()
+	public bool IsAbleToJump()
 	{
-		if (isOnFloor && isControllable && Input.IsActionJustPressed("dash"))
-		{
-			isControllable = false;
-			IsDashing = true;
-			impulse = dashSpeed;
-		}
-
-		if (IsDashing)
-		{
-			velocity.X = impulse * (sprite2D.FlipH ? -1f : 1f);
-			impulse -= fDelta * 2000f;
-			if (impulse <= speed)
-			{
-				if (isOnFloor)
-				{
-					if (impulse <= 0) impulse = 0;
-				}
-				else impulse = speed;
-			}
-			
-			Velocity = velocity;
-			
-			timeSinceDash += fDelta;
-			if (!(timeSinceDash >= dashCooldown)) return;
-			
-			isControllable = true;
-			IsDashing = false;
-			timeSinceDash = 0f;
-		}
-	}
-
-	private void HandleAttacking()
-	{
-		if (!IsAttacking && IsOnFloor() && Input.IsActionJustPressed("attack")) 
-			IsAttacking = true;
-
-		if (!IsAttacking) return;
-		
-		Velocity = Vector2.Zero;
-		timeSinceAttack += fDelta;
-		
-		if (!(timeSinceAttack >= attackCooldown)) return;
-			
-		IsAttacking = false;
-		timeSinceAttack = 0f;
-	}
-
-	private void HandleVerticalMovement()
-	{
-		var isAbleToJump = IsAbleToJump();
-
-		if (!isOnFloor) velocity.Y += gravity * fDelta;
-		else isJumpUsed = false;
-
-		if (!isJumpUsed && Input.IsActionJustPressed("jump") && isAbleToJump)
-		{
-			velocity.Y = jumpVelocity;
-			isJumpUsed = true;
-		}
-		
-		Velocity = velocity;
-	}
-
-	private void HandleHorizontalMovement()
-	{
-		velocity = Velocity;
-		
-		bool leftInput = Input.IsActionPressed("left");
-		bool rightInput = Input.IsActionPressed("right");
-		
-		if (leftInput ^ rightInput)
-			velocity.X = speed * (leftInput ? -1 : 1);
-		else
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, smoothDelta);
-		
-		Velocity = velocity;
-	}
-
-	private bool IsAbleToJump()
-	{
-		if (!isOnFloor)
+		if (!IsOnFloor())
 		{
 			timeSinceLeftFloor += fDelta;
 			return timeSinceLeftFloor <= jumpWindow;
 		}
-
+		
 		timeSinceLeftFloor = 0f;
 		return true;
 	}

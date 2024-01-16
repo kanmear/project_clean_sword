@@ -2,6 +2,8 @@ using Godot;
 
 namespace ProjectCleanSword.Scripts.Player;
 
+using StateMachine.Player;
+
 public partial class PlayerAnimator : AnimationPlayer
 {
 	[Export] private PlayerController playerController;
@@ -11,13 +13,13 @@ public partial class PlayerAnimator : AnimationPlayer
 
 	private void Animate()
 	{
-		if (playerController.IsAttacking)
+		if (playerController.StateMachine.CurrentState.Name == PlayerState.StateName.Attacking)
 		{
 			Play("attacking_idle");
 			return;
 		}
 
-		if (playerController.IsDashing && playerController.IsOnFloor())
+		if (playerController.StateMachine.CurrentState.Name == PlayerState.StateName.Dashing)
 		{
 			Play("dashing");
 			return;
