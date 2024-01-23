@@ -29,11 +29,11 @@ public class EnemyChaseState : EnemyState
         float direction = 0f;
         float playerX = player.Transform.Origin.X;
         float enemyX = Enemy.Transform.Origin.X;
-        if (playerX > enemyX + 5)
+        if (playerX > enemyX + 50)
         {
             direction = 1f;
         }
-        else if (playerX < enemyX - 5) //TODO 5 here is attackRange or something similar
+        else if (playerX < enemyX - 50) //TODO 5 here is attackRange or something similar
         {
             direction = -1f;
         }
