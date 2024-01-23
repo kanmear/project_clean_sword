@@ -35,9 +35,6 @@ public class DashingPlayerState : PlayerState
 		if (!isOnFloor) 
 			PlayerStateMachine.ChangeState(Player.FallingPlayerState);
 	    
-	    if (Input.IsActionPressed("jump"))
-		    PlayerStateMachine.ChangeState(Player.JumpingPlayerState);
-	    
 	    var movingSpeed = Player.MovingSpeed;
 	    
 		velocity.X = impulse * (Player.IsFacingRight ? 1f : -1f);
@@ -52,6 +49,9 @@ public class DashingPlayerState : PlayerState
 		}
 		
 		Player.Move(velocity);
+	    
+	    if (Input.IsActionPressed("jump"))
+		    PlayerStateMachine.ChangeState(Player.JumpingPlayerState);
 		
 		timeSinceDash += delta;
 		if (!(timeSinceDash >= DashCooldown)) return;
