@@ -9,7 +9,7 @@ public class AttackingPlayerState : PlayerState
     
 	private float timeSinceAttack;
 	
-	private const float AttackCooldown = 0.5f;
+	private const float AttackCooldown = 0.3f;
     public AttackingPlayerState(PlayerController player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
         Name = StateName.Attacking;
