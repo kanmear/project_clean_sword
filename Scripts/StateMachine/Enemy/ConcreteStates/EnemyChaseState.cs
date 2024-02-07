@@ -8,6 +8,7 @@ public class EnemyChaseState : EnemyState
     private Node2D player;
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
+        Name = StateName.Chasing;
     }
 
     public override void EnterState()
@@ -36,5 +37,10 @@ public class EnemyChaseState : EnemyState
     public override void OnDamage()
     {
         EnemyStateMachine.ChangeState(Enemy.DamagedState);
+    }
+
+    public override void OnPlayerEnter()
+    {
+        EnemyStateMachine.ChangeState(Enemy.AttackState);
     }
 }

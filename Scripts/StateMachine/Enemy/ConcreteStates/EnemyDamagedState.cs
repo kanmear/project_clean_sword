@@ -12,6 +12,7 @@ public class EnemyDamagedState : EnemyState
     
     public EnemyDamagedState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
+        Name = StateName.Damaged;
     }
 
     public override void EnterState()

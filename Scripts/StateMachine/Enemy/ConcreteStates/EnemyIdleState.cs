@@ -11,6 +11,7 @@ public class EnemyIdleState : EnemyState
     
     public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
+        Name = StateName.Default;
     }
 
     public override void EnterState()

@@ -79,4 +79,10 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     {
         QueueFree();
     }
+
+    public void AttackPlayer()
+    {
+        if (StateMachine.CurrentState.Name == EnemyState.StateName.Chasing)
+            StateMachine.CurrentState.OnPlayerEnter();
+    }
 }

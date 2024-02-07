@@ -1,6 +1,7 @@
 namespace ProjectCleanSword.Scripts.Enemy;
 
 using Godot;
+using StateMachine.Enemy;
 
 public partial class EnemyAnimator : AnimationPlayer
 {
@@ -13,6 +14,12 @@ public partial class EnemyAnimator : AnimationPlayer
 	{
 		var velocity = enemy.Velocity;
 		var isOnFloor = enemy.IsOnFloor();
+
+		if (enemy.StateMachine.CurrentState.Name == EnemyState.StateName.Attacking)
+		{
+			Play("attacking");
+			return;
+		}
 		
 		Play(Mathf.Abs(velocity.X) > 1 ? "running" : "idle");
 
