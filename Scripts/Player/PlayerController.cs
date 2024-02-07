@@ -70,7 +70,6 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	public override void _Process(double delta)
 	{
 		StateMachine.CurrentState.FrameProcess((float) delta);
-		IsFacingRight = !sprite2D.FlipH;
 	}
 
 	public void Move(Vector2 vel)

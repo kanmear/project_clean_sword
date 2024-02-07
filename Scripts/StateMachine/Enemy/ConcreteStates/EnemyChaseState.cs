@@ -15,30 +15,26 @@ public class EnemyChaseState : EnemyState
         player = Main.Player;
     }
 
-    public override void ExitState()
-    {
-        base.ExitState();
-    }
-
-    public override void FrameProcess()
-    {
-    }
-
-    public override void PhysicsProcess()
+    public override void PhysicsProcess(float delta)
     {
         float direction = 0f;
         float playerX = player.Transform.Origin.X;
         float enemyX = Enemy.Transform.Origin.X;
-        if (playerX > enemyX + 50)
+        if (playerX > enemyX)
         {
             direction = 1f;
         }
-        else if (playerX < enemyX - 50) //TODO 5 here is attackRange or something similar
+        else if (playerX < enemyX) 
         {
             direction = -1f;
         }
         
         var velocity = new Vector2(direction * Enemy.MovingSpeed, 0);
         Enemy.Move(velocity);
+    }
+
+    public override void OnDamage()
+    {
+        EnemyStateMachine.ChangeState(Enemy.DamagedState);
     }
 }

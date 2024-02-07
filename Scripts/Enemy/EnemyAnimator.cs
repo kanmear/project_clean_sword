@@ -29,5 +29,6 @@ public partial class EnemyAnimator : AnimatedSprite2D
 			< 0 => true,
 			_ => FlipH
 		};
+		enemy.IsFacingRight = !FlipH;
 	}
 }

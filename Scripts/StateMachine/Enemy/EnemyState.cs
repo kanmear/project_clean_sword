@@ -15,6 +15,7 @@ public class EnemyState
 
     public virtual void EnterState() { }
     public virtual void ExitState() { }
-    public virtual void FrameProcess() { }
-    public virtual void PhysicsProcess() { }
+    public virtual void FrameProcess(float delta) { }
+    public virtual void PhysicsProcess(float delta) { }
+    public virtual void OnDamage() { }
 }

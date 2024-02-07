@@ -26,6 +26,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     public EnemyIdleState IdleState { get; set; }
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
+    public EnemyDamagedState DamagedState { get; set; }
 
     #endregion
 
@@ -39,18 +40,19 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
+        DamagedState = new EnemyDamagedState(this, StateMachine);
         
         StateMachine.Initialize(ChaseState);
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        StateMachine.CurrentState.PhysicsProcess();
+        StateMachine.CurrentState.PhysicsProcess((float) delta);
     }
 
     public override void _Process(double delta)
     {
-        StateMachine.CurrentState.FrameProcess();
+        StateMachine.CurrentState.FrameProcess((float) delta);
     }
 
     public void Move(Vector2 velocity)
@@ -62,6 +64,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     public void Damage(int amount)
     {
         CurrentHealth -= amount;
+        StateMachine.CurrentState.OnDamage();
         if (CurrentHealth <= 0) Death();
     }
 

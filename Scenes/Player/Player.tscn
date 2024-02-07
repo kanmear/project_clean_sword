@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=20 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Texture2D" uid="uid://ono18y81aaww" path="res://Sprites/Player/ronin_dash.png" id="2_gpb5c"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cr31cc7j06voo" path="res://Sprites/Player/ronin_jump_h.png" id="5_l8kk4"]
 [ext_resource type="Texture2D" uid="uid://bpftlmwgraiqu" path="res://Sprites/Player/ronin_run.png" id="6_uqphh"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAnimator.cs" id="7_jrb1d"]
+[ext_resource type="Script" path="res://Scripts/PlayerAttack.cs" id="9_5vl3q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6jeo"]
+size = Vector2(20, 23)
 
 [sub_resource type="Animation" id="Animation_g1poo"]
 length = 0.001
@@ -70,6 +74,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ot7nw"]
@@ -135,6 +151,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -8), Vector2(0, -8)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
 [sub_resource type="Animation" id="Animation_8de5q"]
 resource_name = "dashing"
@@ -199,6 +227,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_2g4gn"]
 resource_name = "falling"
@@ -250,6 +290,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_ftd73"]
@@ -315,6 +367,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_k7qqf"]
 resource_name = "jumping"
@@ -366,6 +430,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_c47kn"]
@@ -420,6 +496,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [1, 1]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BladeHurtbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vo7j"]
 _data = {
@@ -448,6 +536,16 @@ position = Vector2(0, -8)
 texture = ExtResource("6_uqphh")
 hframes = 8
 
+[node name="BladeHurtbox" type="Area2D" parent="Sprite2D"]
+position = Vector2(22, 4.5)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("9_5vl3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/BladeHurtbox"]
+shape = SubResource("RectangleShape2D_b6jeo")
+disabled = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("playerController", "sprite2D")]
 root_node = NodePath("../Sprite2D")
 libraries = {
@@ -459,9 +557,11 @@ script = ExtResource("7_jrb1d")
 playerController = NodePath("..")
 sprite2D = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_fkbup")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[connection signal="body_entered" from="Sprite2D/BladeHurtbox" to="Sprite2D/BladeHurtbox" method="OnBodyEntered"]

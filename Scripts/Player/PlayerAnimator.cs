@@ -38,11 +38,13 @@ public partial class PlayerAnimator : AnimationPlayer
 				Play("falling");
 		}
 
-		sprite2D.FlipH = velocity.X switch
+		var x = velocity.X switch
 		{
-			> 0 => false,
-			< 0 => true,
-			_ => sprite2D.FlipH
+			> 0 => 1,
+			< 0 => -1,
+			_ => sprite2D.Scale.X
 		};
+		playerController.IsFacingRight = (int) x == 1;
+		sprite2D.Scale = new Vector2(x, 1);
 	}
 }
