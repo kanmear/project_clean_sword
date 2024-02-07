@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6vrevelrbq3x"]
+[gd_scene load_steps=8 format=3 uid="uid://c6vrevelrbq3x"]
 
 [ext_resource type="Texture2D" uid="uid://bb2j7q8v54t84" path="res://Sprites/Background/placeholder.png" id="1_slpfc"]
+[ext_resource type="PackedScene" uid="uid://ceesip7cai7kx" path="res://Scenes/Main.tscn" id="1_swdi0"]
 [ext_resource type="Texture2D" uid="uid://dm0bd7py3sxn1" path="res://Sprites/Tiles/tilemap.png" id="2_dbxun"]
 [ext_resource type="PackedScene" uid="uid://htncbmesy7qc" path="res://Scenes/Player/Player.tscn" id="3_p7whk"]
 [ext_resource type="PackedScene" uid="uid://c38pcanxrvj1r" path="res://Scenes/Enemies/SwordOni/SwordOni.tscn" id="4_4beuf"]
@@ -30,6 +31,8 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_y40pq")
 
 [node name="level" type="Node"]
+
+[node name="Main" parent="." instance=ExtResource("1_swdi0")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
