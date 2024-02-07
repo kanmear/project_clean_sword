@@ -17,6 +17,7 @@ public class EnemyDamagedState : EnemyState
     public override void EnterState()
     {
         player = Main.Player;
+        Enemy.SetFlippable(false);
         
         direction = 0f;
         impulse = 300f;

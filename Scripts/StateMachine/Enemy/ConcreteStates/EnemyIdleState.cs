@@ -31,6 +31,11 @@ public class EnemyIdleState : EnemyState
             EnemyStateMachine.ChangeState(Enemy.ChaseState);
     }
 
+    public override void ExitState()
+    {
+        Enemy.SetFlippable(true);
+    }
+
     public override void OnDamage()
     {
         EnemyStateMachine.ChangeState(Enemy.DamagedState);

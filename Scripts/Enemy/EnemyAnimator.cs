@@ -2,9 +2,10 @@ namespace ProjectCleanSword.Scripts.Enemy;
 
 using Godot;
 
-public partial class EnemyAnimator : AnimatedSprite2D
+public partial class EnemyAnimator : AnimationPlayer
 {
 	[Export] private Enemy enemy;
+	[Export] private Sprite2D sprite2D;
 
 	public override void _Process(double delta) => Animate();
 
@@ -23,12 +24,16 @@ public partial class EnemyAnimator : AnimatedSprite2D
 				Play("falling");
 		}
 
-		FlipH = velocity.X switch
+		if (enemy.IsFlippable)
 		{
-			> 0 => false,
-			< 0 => true,
-			_ => FlipH
-		};
-		enemy.IsFacingRight = !FlipH;
+			var x = velocity.X switch
+			{
+				> 0 => 1,
+				< 0 => -1,
+				_ => sprite2D.Scale.X
+			};
+			enemy.IsFacingRight = (int) x == 1;
+			sprite2D.Scale = new Vector2(x, 1);
+		}
 	}
 }

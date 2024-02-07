@@ -30,6 +30,8 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
 
     #endregion
 
+    public bool IsFlippable = true;
+
     public override void _Ready()
     {
         base._Ready();
@@ -59,6 +61,11 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     {
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    public void SetFlippable(bool b)
+    {
+        IsFlippable = b;
     }
 
     public void Damage(int amount)
