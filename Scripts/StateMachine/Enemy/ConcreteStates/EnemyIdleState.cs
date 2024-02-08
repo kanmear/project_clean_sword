@@ -8,6 +8,7 @@ public class EnemyIdleState : EnemyState
     private Vector2 velocity;
     private readonly float idleTimeLimit = 1f;
     private float currentIdleTime;
+    private bool isAttacking;
     
     public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
@@ -20,6 +21,7 @@ public class EnemyIdleState : EnemyState
         velocity.X = 0f;
         
         currentIdleTime = 0f;
+        isAttacking = false;
     }
     
     public override void PhysicsProcess(float delta)
@@ -29,12 +31,22 @@ public class EnemyIdleState : EnemyState
         
         currentIdleTime += delta;
         if (currentIdleTime >= idleTimeLimit)
-            EnemyStateMachine.ChangeState(Enemy.ChaseState);
+        {
+            if (isAttacking)
+                EnemyStateMachine.ChangeState(Enemy.AttackState);
+            else
+                EnemyStateMachine.ChangeState(Enemy.ChaseState);
+        }
     }
 
     public override void ExitState()
     {
         Enemy.SetFlippable(true);
+    }
+
+    public override void OnPlayerEnter()
+    {
+        isAttacking = true;
     }
 
     public override void OnDamage()
