@@ -30,4 +30,9 @@ public class EnemyAttackState : EnemyState
         if (timeSinceAttack >= AttackCooldown)
             EnemyStateMachine.ChangeState(Enemy.IdleState);
     }
+
+    public override void OnDamage()
+    {
+        EnemyStateMachine.ChangeState(Enemy.DamagedState);
+    }
 }

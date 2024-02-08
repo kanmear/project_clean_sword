@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Enemy/EnemyAnimator.cs" id="4_cakmq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oawle"]
-size = Vector2(36, 31)
+size = Vector2(36.5, 31)
 
 [sub_resource type="Animation" id="Animation_inatq"]
 length = 0.001
@@ -95,7 +95,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(11, 8.5)]
+"values": [Vector2(9, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_0i6hj"]
@@ -534,7 +534,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(9.5, 0.5)]
+"values": [Vector2(9.25, 0.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wo3w2"]
@@ -568,7 +568,7 @@ script = ExtResource("3_us5yg")
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackRangeBox"]
-position = Vector2(11, 8.5)
+position = Vector2(9, 0.5)
 shape = SubResource("RectangleShape2D_oawle")
 disabled = true
 
