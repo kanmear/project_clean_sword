@@ -1,4 +1,4 @@
-namespace ProjectCleanSword.Scripts;
+namespace ProjectCleanSword.Scripts.Player;
 
 using Godot;
 using Interfaces;
