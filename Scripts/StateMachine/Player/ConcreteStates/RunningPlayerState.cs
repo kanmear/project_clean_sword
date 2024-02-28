@@ -16,11 +16,9 @@ public class RunningPlayerState : PlayerState
     {
 	    if (!Player.IsAbleToJump())
 		    PlayerStateMachine.ChangeState(Player.FallingPlayerState);
-		if (Input.IsActionJustPressed("attack"))
-            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
 	    if (Input.IsActionPressed("jump"))
 		    PlayerStateMachine.ChangeState(Player.JumpingPlayerState);
-		if (Input.IsActionJustPressed("dash"))
+        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
 		velocity = Player.Velocity;

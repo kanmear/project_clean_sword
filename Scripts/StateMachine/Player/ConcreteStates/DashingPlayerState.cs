@@ -10,7 +10,7 @@ public class DashingPlayerState : PlayerState
 	private float impulse;
 	private float timeSinceDash;
 	
-	private const float DashCooldown = 0.6f;
+	private const float DashLength = 0.3f;
 
 	public DashingPlayerState(PlayerController player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
 	{
@@ -19,26 +19,22 @@ public class DashingPlayerState : PlayerState
 
     public override void EnterState()
     {
-	    velocity = Player.Velocity;
-	    impulse = Player.DashImpulse;
-    }
-
-    public override void ExitState()
-    {
+	    Player.StartDashTimer();
 		timeSinceDash = 0f;
+	    
+	    velocity = Vector2.Zero;
+	    impulse = Player.DashImpulse;
     }
 
     public override void PhysicsProcess(float delta)
     {
-	    var isOnFloor = Player.IsAbleToJump();
-	    
-		if (!isOnFloor) 
-			PlayerStateMachine.ChangeState(Player.FallingPlayerState);
+	    var isOnFloor = Player.IsOnFloor();
 	    
 	    var movingSpeed = Player.MovingSpeed;
-	    
+
+	    velocity.Y = 0f;
 		velocity.X = impulse * (Player.IsFacingRight ? 1f : -1f);
-		impulse -= delta * 2000f;
+		impulse -= delta * 4000f;
 		if (impulse <= movingSpeed)
 		{
 			if (isOnFloor)
@@ -50,11 +46,8 @@ public class DashingPlayerState : PlayerState
 		
 		Player.Move(velocity);
 	    
-	    if (Input.IsActionPressed("jump"))
-		    PlayerStateMachine.ChangeState(Player.JumpingPlayerState);
-		
 		timeSinceDash += delta;
-		if (!(timeSinceDash >= DashCooldown)) return;
+		if (!(timeSinceDash >= DashLength)) return;
 		
 		if (isOnFloor) 
 			PlayerStateMachine.ChangeState(Player.DefaultPlayerState);

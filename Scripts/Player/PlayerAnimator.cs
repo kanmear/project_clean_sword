@@ -9,6 +9,7 @@ public partial class PlayerAnimator : AnimationPlayer
 	[Export] private PlayerController playerController;
 	[Export] private Sprite2D sprite2D;
 
+	//TODO move it out from Process, should just be called once from states mostly
 	public override void _Process(double delta) => Animate();
 
 	private void Animate()

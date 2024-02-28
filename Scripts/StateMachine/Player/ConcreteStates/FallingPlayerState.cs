@@ -14,6 +14,9 @@ public class FallingPlayerState : PlayerState
 
     public override void PhysicsProcess(float delta)
     {
+        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
+            PlayerStateMachine.ChangeState(Player.DashingPlayerState);
+        
 	    if (Player.IsOnFloor())
 		    PlayerStateMachine.ChangeState(Player.DefaultPlayerState);
 	    

@@ -20,14 +20,13 @@ public class DefaultPlayerState : PlayerState
     public override void PhysicsProcess(float delta)
     {
         Player.Move(velocity);
-            
+
         if (!Player.IsOnFloor())
             PlayerStateMachine.ChangeState(Player.FallingPlayerState);
-        
-		if (Input.IsActionJustPressed("attack"))
-            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
-        
-		if (Input.IsActionJustPressed("dash"))
+
+        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
+            PlayerStateMachine.ChangeState(Player.DashingPlayerState);
+        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
         if (Input.IsActionJustPressed("jump"))

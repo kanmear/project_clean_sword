@@ -7,10 +7,13 @@ using StateMachine.Player.ConcreteStates;
 
 public partial class PlayerController : CharacterBody2D, IMovable
 {
+	[Export] private BladeAnimator bladeAnimator;
+	[Export] private Timer dashTimer;
+	
 	#region IMovable fields
 
 	[Export] public float MovingSpeed { get; set; } = 300.0f;
-	[Export] public float DashImpulse = 900.0f;
+	[Export] public float DashImpulse = 1200.0f;
 	[Export] public float JumpImpulse = -400.0f;
 	[Export] public float SmoothDelta = 14f;
 	[Export] private float jumpWindow = 0.1f;
@@ -18,14 +21,17 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	#endregion
 
-	[Export] private Sprite2D sprite2D;
-
 	#region Internal fields
 
 	private Vector2 velocity;
 	private float fDelta;
 
 	private float timeSinceLeftFloor;
+	private float attackCooldown = 0.2f;
+	private float timeSinceLastAttack;
+	public bool IsAttacking;
+	
+	private float dashCooldown = 2f;
 	
 	#endregion
 
@@ -38,7 +44,6 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	public JumpingPlayerState JumpingPlayerState { get; private set; }	
 	public FallingPlayerState FallingPlayerState { get; private set; }	
 	public DashingPlayerState DashingPlayerState { get; private set; }	
-	public AttackingPlayerState AttackingPlayerState { get; private set; }
 
 	#endregion
 	
@@ -52,7 +57,6 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		JumpingPlayerState = new JumpingPlayerState(this, StateMachine);
 		FallingPlayerState = new FallingPlayerState(this, StateMachine);
 		DashingPlayerState = new DashingPlayerState(this, StateMachine);
-		AttackingPlayerState = new AttackingPlayerState(this, StateMachine);
 		
 		StateMachine.Initialize(DefaultPlayerState);
 	}
@@ -63,6 +67,11 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		
 		StateMachine.CurrentState.PhysicsProcess(fDelta);
 		currentState = StateMachine.CurrentState.Name.ToString(); //NOTE for debug
+
+		if (Input.IsActionPressed("attack"))
+		{
+			bladeAnimator.PlayAttack();
+		}
 
 		IsAbleToJump();
 	}
@@ -89,4 +98,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		timeSinceLeftFloor = 0f;
 		return true;
 	}
+
+	public void StartDashTimer() => dashTimer.Start(dashCooldown);
+	public bool IsDashReady() => dashTimer.IsStopped();
 }
