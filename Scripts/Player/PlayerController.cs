@@ -8,7 +8,7 @@ using StateMachine.Player.ConcreteStates;
 public partial class PlayerController : CharacterBody2D, IMovable
 {
 	[Export] private BladeAnimator bladeAnimator;
-	[Export] private Timer dashTimer;
+	[Export] private Timer dashCooldownTimer;
 	
 	#region IMovable fields
 
@@ -29,9 +29,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	private float timeSinceLeftFloor;
 	private float attackCooldown = 0.2f;
 	private float timeSinceLastAttack;
-	public bool IsAttacking;
 	
 	private float dashCooldown = 2f;
+	private float dashLength = 0.2f;
 	
 	#endregion
 
@@ -99,6 +99,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		return true;
 	}
 
-	public void StartDashTimer() => dashTimer.Start(dashCooldown);
-	public bool IsDashReady() => dashTimer.IsStopped();
+	public void StartDashTimer() => dashCooldownTimer.Start(dashCooldown);
+	public bool IsDashReady() => dashCooldownTimer.IsStopped();
+	public bool IsDashFinished() => dashCooldownTimer.TimeLeft <= dashCooldown - dashLength;
 }
