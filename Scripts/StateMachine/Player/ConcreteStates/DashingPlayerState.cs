@@ -10,7 +10,7 @@ public class DashingPlayerState : PlayerState
 	private float impulse;
 	private float timeSinceDash;
 	
-	private const float DashLength = 0.3f;
+	private const float DashLength = 0.2f;
 
 	public DashingPlayerState(PlayerController player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
 	{
@@ -26,6 +26,11 @@ public class DashingPlayerState : PlayerState
 	    impulse = Player.DashImpulse;
     }
 
+    public override void ExitState()
+    {
+	    Player.Move(Vector2.Zero);
+    }
+
     public override void PhysicsProcess(float delta)
     {
 	    var isOnFloor = Player.IsOnFloor();
@@ -34,7 +39,7 @@ public class DashingPlayerState : PlayerState
 
 	    velocity.Y = 0f;
 		velocity.X = impulse * (Player.IsFacingRight ? 1f : -1f);
-		impulse -= delta * 4000f;
+		impulse -= delta * 8000f;
 		if (impulse <= movingSpeed)
 		{
 			if (isOnFloor)

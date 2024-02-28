@@ -13,7 +13,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	#region IMovable fields
 
 	[Export] public float MovingSpeed { get; set; } = 300.0f;
-	[Export] public float DashImpulse = 1200.0f;
+	[Export] public float DashImpulse = 1600.0f;
 	[Export] public float JumpImpulse = -400.0f;
 	[Export] public float SmoothDelta = 14f;
 	[Export] private float jumpWindow = 0.1f;
@@ -68,7 +68,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		StateMachine.CurrentState.PhysicsProcess(fDelta);
 		currentState = StateMachine.CurrentState.Name.ToString(); //NOTE for debug
 
-		if (Input.IsActionPressed("attack"))
+		if (Input.IsActionJustPressed("attack"))
 		{
 			bladeAnimator.PlayAttack();
 		}

@@ -71,7 +71,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -83,7 +83,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -142,12 +142,12 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -159,7 +159,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -223,7 +223,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -235,7 +235,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -299,7 +299,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -311,7 +311,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -375,7 +375,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -387,7 +387,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -451,7 +451,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerHitbox:shape:size")
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -463,7 +463,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerHitbox:position")
+tracks/5/path = NodePath("CollisionShape2D_player:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -489,7 +489,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D_player/BladeHurtbox/CollisionShape2D:disabled")
+tracks/0/path = NodePath("../Sprite2D_player/Area2D_blade/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -577,7 +577,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Sprite2D_player/BladeHurtbox/CollisionShape2D:disabled")
+tracks/4/path = NodePath("../Sprite2D_player/Area2D_blade/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -589,7 +589,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Sprite2D_player/BladeHurtbox/CollisionShape2D:position")
+tracks/5/path = NodePath("../Sprite2D_player/Area2D_blade/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -635,18 +635,18 @@ texture = ExtResource("8_vw3ms")
 hframes = 3
 frame = 2
 
-[node name="BladeHurtbox" type="Area2D" parent="Sprite2D_player"]
+[node name="Area2D_blade" type="Area2D" parent="Sprite2D_player"]
 position = Vector2(22, 4.5)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_b8s74")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D_player/BladeHurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D_player/Area2D_blade"]
 position = Vector2(-14.5, -2.5)
 shape = SubResource("RectangleShape2D_b6jeo")
 disabled = true
 
-[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_player" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_fkbup")
 
@@ -664,6 +664,7 @@ root_node = NodePath("../AnimationPlayer_player")
 libraries = {
 "": SubResource("AnimationLibrary_econa")
 }
+speed_scale = 1.5
 script = ExtResource("10_dq4bt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -673,4 +674,4 @@ zoom = Vector2(2, 2)
 wait_time = 2.0
 one_shot = true
 
-[connection signal="body_entered" from="Sprite2D_player/BladeHurtbox" to="Sprite2D_player/BladeHurtbox" method="OnBodyEntered"]
+[connection signal="body_entered" from="Sprite2D_player/Area2D_blade" to="Sprite2D_player/Area2D_blade" method="OnBodyEntered"]
