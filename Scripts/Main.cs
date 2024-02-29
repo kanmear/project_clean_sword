@@ -10,4 +10,10 @@ public partial class Main : Node
     {
         Input.MouseMode = Input.MouseModeEnum.Hidden;
     }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("pause")) 
+            GetTree().Quit();
+    }
 }

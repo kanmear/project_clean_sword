@@ -622,7 +622,8 @@ collision_layer = 2
 script = ExtResource("1_sx70g")
 bladeAnimator = NodePath("AnimationPlayer_blade")
 dashCooldownTimer = NodePath("Timer_dash")
-JumpImpulse = -500.0
+MovingSpeed = 250.0
+JumpImpulse = -450.0
 jumpWindow = 0.08
 
 [node name="Sprite2D_player" type="Sprite2D" parent="."]
