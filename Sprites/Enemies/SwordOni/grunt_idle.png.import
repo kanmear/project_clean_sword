@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwnunsrbdi5k4"
-path="res://.godot/imported/sword_oni_jump_and_fall.png-3ed5609b5be22f2f25ddfaafc4a77365.ctex"
+uid="uid://cp7l3v6tp4q2"
+path="res://.godot/imported/grunt_idle.png-5ffd5a77c54beb958a3a34e5a88e6d47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/SwordOni/sword_oni_jump_and_fall.png"
-dest_files=["res://.godot/imported/sword_oni_jump_and_fall.png-3ed5609b5be22f2f25ddfaafc4a77365.ctex"]
+source_file="res://Sprites/Enemies/SwordOni/grunt_idle.png"
+dest_files=["res://.godot/imported/grunt_idle.png-5ffd5a77c54beb958a3a34e5a88e6d47.ctex"]
 
 [params]
 

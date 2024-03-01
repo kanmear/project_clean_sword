@@ -105,5 +105,4 @@ layer_0/tile_data = PackedInt32Array(2097167, 65537, 0, 2097168, 327681, 0, 2097
 position = Vector2(528, 504)
 
 [node name="SwordOni" parent="." instance=ExtResource("4_4beuf")]
-visible = false
-position = Vector2(368, 496)
+position = Vector2(368, 504)

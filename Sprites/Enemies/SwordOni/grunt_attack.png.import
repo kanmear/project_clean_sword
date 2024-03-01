@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0l7s4e00jvt3"
-path="res://.godot/imported/sword_oni_run-Sheet.png-62c2fce22015957a4fff3a62443f10ff.ctex"
+uid="uid://ky431w8mil1d"
+path="res://.godot/imported/grunt_attack.png-2612eb471599d33fba2154664e4e6056.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/SwordOni/sword_oni_run-Sheet.png"
-dest_files=["res://.godot/imported/sword_oni_run-Sheet.png-62c2fce22015957a4fff3a62443f10ff.ctex"]
+source_file="res://Sprites/Enemies/SwordOni/grunt_attack.png"
+dest_files=["res://.godot/imported/grunt_attack.png-2612eb471599d33fba2154664e4e6056.ctex"]
 
 [params]
 

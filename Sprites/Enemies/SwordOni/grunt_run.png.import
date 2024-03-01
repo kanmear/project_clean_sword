@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsfldr0ata83s"
-path="res://.godot/imported/idle.png-aee918378adbe7ed38df0e558383ce5a.ctex"
+uid="uid://btvxyq8toqt3b"
+path="res://.godot/imported/grunt_run.png-3c645c095ffbeceeaff26e29e4cffd7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/SwordOni/idle.png"
-dest_files=["res://.godot/imported/idle.png-aee918378adbe7ed38df0e558383ce5a.ctex"]
+source_file="res://Sprites/Enemies/SwordOni/grunt_run.png"
+dest_files=["res://.godot/imported/grunt_run.png-3c645c095ffbeceeaff26e29e4cffd7f.ctex"]
 
 [params]
 

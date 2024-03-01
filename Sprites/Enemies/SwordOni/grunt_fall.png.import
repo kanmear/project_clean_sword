@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dri6aulaqnu2y"
-path="res://.godot/imported/sword_oni_attack-Sheet.png-f3438c2551bd82bf4dada3beb20252a7.ctex"
+uid="uid://bw3nkdmxlootu"
+path="res://.godot/imported/grunt_fall.png-14a04766f90de8fdc0c34f9cfba6f8ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/SwordOni/sword_oni_attack-Sheet.png"
-dest_files=["res://.godot/imported/sword_oni_attack-Sheet.png-f3438c2551bd82bf4dada3beb20252a7.ctex"]
+source_file="res://Sprites/Enemies/SwordOni/grunt_fall.png"
+dest_files=["res://.godot/imported/grunt_fall.png-14a04766f90de8fdc0c34f9cfba6f8ad.ctex"]
 
 [params]
 
