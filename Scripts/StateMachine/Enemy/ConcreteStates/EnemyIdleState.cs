@@ -6,7 +6,7 @@ using Scripts.Enemy;
 public class EnemyIdleState : EnemyState
 {
     private Vector2 velocity;
-    private readonly float idleTimeLimit = 1f;
+    private readonly float idleTimeLimit = 0.5f;
     private float currentIdleTime;
     private bool isAttacking;
     

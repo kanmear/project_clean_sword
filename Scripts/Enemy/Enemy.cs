@@ -27,6 +27,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
     public EnemyDamagedState DamagedState { get; set; }
+    public EnemyDeadState DeadState { get; set; }
 
     #endregion
 
@@ -43,6 +44,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
         DamagedState = new EnemyDamagedState(this, StateMachine);
+        DeadState = new EnemyDeadState(this, StateMachine);
         
         StateMachine.Initialize(ChaseState);
     }
@@ -72,7 +74,7 @@ public partial class Enemy : CharacterBody2D, IDamageable, IMovable
     {
         CurrentHealth -= amount;
         StateMachine.CurrentState.OnDamage();
-        if (CurrentHealth <= 0) Death();
+        // if (CurrentHealth <= 0) Death();
     }
 
     public void Death()

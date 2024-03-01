@@ -41,7 +41,12 @@ public class EnemyDamagedState : EnemyState
         
 		impulse -= delta * 2000f;
         if (impulse < 0f)
-            EnemyStateMachine.ChangeState(Enemy.IdleState);
+        {
+            if (Enemy.CurrentHealth <= 0) 
+                EnemyStateMachine.ChangeState(Enemy.DeadState);
+            else
+                EnemyStateMachine.ChangeState(Enemy.IdleState);
+        }
         
         Enemy.Move(velocity);
     }

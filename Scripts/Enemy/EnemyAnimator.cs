@@ -21,6 +21,12 @@ public partial class EnemyAnimator : AnimationPlayer
 			return;
 		}
 		
+		if (enemy.StateMachine.CurrentState.Name == EnemyState.StateName.Dead)
+		{
+			Play("dead");
+			return;
+		}
+		
 		Play(Mathf.Abs(velocity.X) > 1 ? "running" : "idle");
 
 		if (!isOnFloor) 

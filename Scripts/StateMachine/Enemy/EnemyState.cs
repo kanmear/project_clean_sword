@@ -27,6 +27,7 @@ public class EnemyState
         Default,
         Attacking,
         Damaged,
+        Dead,
         Chasing,
     }
 }
