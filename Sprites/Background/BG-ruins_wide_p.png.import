@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb2j7q8v54t84"
-path="res://.godot/imported/placeholder.png-215f3b8f2e09ea649e11d4f4398028dc.ctex"
+uid="uid://b24t62qopgmkc"
+path="res://.godot/imported/BG-ruins_wide_p.png-0a2ce0ef063ae0614b09679802323c86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/placeholder.png"
-dest_files=["res://.godot/imported/placeholder.png-215f3b8f2e09ea649e11d4f4398028dc.ctex"]
+source_file="res://Sprites/Background/BG-ruins_wide_p.png"
+dest_files=["res://.godot/imported/BG-ruins_wide_p.png-0a2ce0ef063ae0614b09679802323c86.ctex"]
 
 [params]
 

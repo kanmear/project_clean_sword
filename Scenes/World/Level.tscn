@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6vrevelrbq3x"]
+[gd_scene load_steps=11 format=3 uid="uid://c6vrevelrbq3x"]
 
 [ext_resource type="PackedScene" uid="uid://ceesip7cai7kx" path="res://Scenes/Main.tscn" id="1_swdi0"]
-[ext_resource type="Texture2D" uid="uid://bomusb6yhk4uf" path="res://Sprites/Background/sky_bg.png" id="2_a2f8k"]
 [ext_resource type="Texture2D" uid="uid://c3q4a0r7bnj6n" path="res://Sprites/Tiles/tilemap.png" id="3_5bkeg"]
 [ext_resource type="PackedScene" uid="uid://htncbmesy7qc" path="res://Scenes/Player/Player.tscn" id="3_p7whk"]
 [ext_resource type="PackedScene" uid="uid://c38pcanxrvj1r" path="res://Scenes/Enemies/SwordOni/SwordOni.tscn" id="4_4beuf"]
+[ext_resource type="Texture2D" uid="uid://bwcxff8xwkijj" path="res://Sprites/Background/BG-sky_wide_p.png" id="5_dgpsw"]
+[ext_resource type="Texture2D" uid="uid://k60j8jx1gxcp" path="res://Sprites/Background/BG-mountains_wide_p.png" id="6_t0wu2"]
+[ext_resource type="Texture2D" uid="uid://b24t62qopgmkc" path="res://Sprites/Background/BG-ruins_wide_p.png" id="7_5jtsd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fgbl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_am361"]
 texture = ExtResource("3_5bkeg")
@@ -106,6 +110,7 @@ sources/1 = SubResource("TileSetAtlasSource_am361")
 [node name="Main" parent="." instance=ExtResource("1_swdi0")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_a2f8k")
+texture = SubResource("CompressedTexture2D_fgbl0")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -130,3 +135,31 @@ position = Vector2(528, 504)
 
 [node name="SwordOni" parent="." instance=ExtResource("4_4beuf")]
 position = Vector2(368, 504)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer_sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_sky"]
+texture_filter = 1
+texture = ExtResource("5_dgpsw")
+centered = false
+
+[node name="ParallaxLayer_mountains" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_mountains"]
+texture_filter = 1
+texture = ExtResource("6_t0wu2")
+centered = false
+
+[node name="ParallaxLayer_ruins" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer_ruins"]
+texture_filter = 1
+texture = ExtResource("7_5jtsd")
+centered = false
