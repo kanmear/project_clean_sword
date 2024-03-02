@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c3q4a0r7bnj6n" path="res://Sprites/Tiles/tilemap.png" id="3_5bkeg"]
 [ext_resource type="PackedScene" uid="uid://htncbmesy7qc" path="res://Scenes/Player/Player.tscn" id="3_p7whk"]
 [ext_resource type="PackedScene" uid="uid://c38pcanxrvj1r" path="res://Scenes/Enemies/SwordOni/SwordOni.tscn" id="4_4beuf"]
-[ext_resource type="Texture2D" uid="uid://bwcxff8xwkijj" path="res://Sprites/Background/BG-sky_wide_p.png" id="5_dgpsw"]
-[ext_resource type="Texture2D" uid="uid://k60j8jx1gxcp" path="res://Sprites/Background/BG-mountains_wide_p.png" id="6_t0wu2"]
-[ext_resource type="Texture2D" uid="uid://b24t62qopgmkc" path="res://Sprites/Background/BG-ruins_wide_p.png" id="7_5jtsd"]
+[ext_resource type="Texture2D" uid="uid://b74lot8nfiq2n" path="res://Sprites/Background/BG-sky_wide_p.png" id="5_dgpsw"]
+[ext_resource type="Texture2D" uid="uid://bqhlonqtlk8v4" path="res://Sprites/Background/BG-mountains_wide_p.png" id="6_t0wu2"]
+[ext_resource type="Texture2D" uid="uid://b0fk4yeuxlul4" path="res://Sprites/Background/BG-ruins_wide_p.png" id="7_5jtsd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fgbl0"]
 

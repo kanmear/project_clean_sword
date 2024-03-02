@@ -705,6 +705,7 @@ speed_scale = 1.5
 script = ExtResource("10_dq4bt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -40)
 zoom = Vector2(2, 2)
 
 [node name="Timer_dash" type="Timer" parent="."]
