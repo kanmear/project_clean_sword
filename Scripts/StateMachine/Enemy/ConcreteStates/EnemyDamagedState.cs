@@ -21,7 +21,7 @@ public class EnemyDamagedState : EnemyState
         Enemy.SetFlippable(false);
         
         direction = 0f;
-        impulse = 300f;
+        impulse = 350f;
         
         float playerX = player.Transform.Origin.X;
         float enemyX = Enemy.Transform.Origin.X;
@@ -37,17 +37,22 @@ public class EnemyDamagedState : EnemyState
 
     public override void PhysicsProcess(float delta)
     {
-        velocity = new Vector2(direction * impulse, -impulse);
-        
-		impulse -= delta * 2000f;
-        if (impulse < 0f)
-        {
-            if (Enemy.CurrentHealth <= 0) 
-                EnemyStateMachine.ChangeState(Enemy.DeadState);
-            else
-                EnemyStateMachine.ChangeState(Enemy.IdleState);
-        }
+        velocity = new Vector2(direction * impulse, -impulse + 200f);
         
         Enemy.Move(velocity);
+        
+		impulse -= delta * 2000f;
+        if (impulse < 10f)
+            impulse = 10f;
+
+        if (Enemy.CurrentHealth <= 0)
+        {
+            EnemyStateMachine.ChangeState(Enemy.DeadState);
+        }
+        else if (Enemy.IsOnFloor())
+        {
+            EnemyStateMachine.ChangeState(Enemy.IdleState);
+        }
+        
     }
 }
