@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=28 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.cs" id="3_b8s74"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bj1b33orstem3" path="res://Sprites/Player/ronin_dash_ground.png" id="7_uljeq"]
 [ext_resource type="Texture2D" uid="uid://b50upnj3x7jfl" path="res://Sprites/Player/ronin_attack.png" id="8_vw3ms"]
 [ext_resource type="Script" path="res://Scripts/Player/BladeAnimator.cs" id="10_dq4bt"]
+[ext_resource type="Script" path="res://Scripts/Player/GhostTrailParticle.cs" id="11_i1vxm"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/DashHorizontalFlip.gdshader" id="12_srt72"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6jeo"]
 size = Vector2(25, 13)
@@ -653,18 +655,32 @@ _data = {
 "attacking": SubResource("Animation_inkjn")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uvjw8"]
+shader = ExtResource("12_srt72")
+shader_parameter/isFlipped = null
+
+[sub_resource type="Gradient" id="Gradient_4g3xd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sctd"]
+shader = ExtResource("12_srt72")
+shader_parameter/isFlipped = null
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "GhostTrailParticle")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
 bladeAnimator = NodePath("AnimationPlayer_blade")
 dashCooldownTimer = NodePath("Timer_dash")
+GhostTrailParticle = NodePath("CPUParticles2D_dashGhostTrail")
 MovingSpeed = 250.0
 JumpImpulse = -450.0
 jumpWindow = 0.08
 
 [node name="Sprite2D_player" type="Sprite2D" parent="."]
+z_index = 5
 texture_filter = 1
 texture = ExtResource("4_ehkcj")
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Sprite2D_blade" type="Sprite2D" parent="Sprite2D_player"]
 visible = false
@@ -711,5 +727,17 @@ zoom = Vector2(2, 2)
 [node name="Timer_dash" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CPUParticles2D_dashGhostTrail" type="CPUParticles2D" parent="." node_paths=PackedStringArray("playerSprite")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_uvjw8")
+amount = 3
+lifetime = 0.1
+spread = 0.0
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_4g3xd")
+script = ExtResource("11_i1vxm")
+playerSprite = NodePath("../Sprite2D_player")
+shader = SubResource("ShaderMaterial_5sctd")
 
 [connection signal="body_entered" from="Sprite2D_player/Area2D_blade" to="Sprite2D_player/Area2D_blade" method="OnBodyEntered"]

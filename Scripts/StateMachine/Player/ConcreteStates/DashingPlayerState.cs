@@ -20,11 +20,15 @@ public class DashingPlayerState : PlayerState
 	    
 	    velocity = Vector2.Zero;
 	    impulse = Player.DashImpulse;
+        
+	    Player.GhostTrailParticle.Enable(true);
     }
 
     public override void ExitState()
     {
 	    Player.Move(Vector2.Zero);
+        
+	    Player.GhostTrailParticle.Enable(false);
     }
 
     public override void PhysicsProcess(float delta)

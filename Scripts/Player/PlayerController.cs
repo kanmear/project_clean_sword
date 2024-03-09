@@ -9,6 +9,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 {
 	[Export] private BladeAnimator bladeAnimator;
 	[Export] private Timer dashCooldownTimer;
+	[Export] public GhostTrailParticle GhostTrailParticle;
 	
 	#region IMovable fields
 
