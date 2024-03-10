@@ -5,8 +5,15 @@ namespace ProjectCleanSword.Scripts.Player;
 public partial class GhostTrailParticle : CpuParticles2D
 {
     [Export] private Sprite2D playerSprite;
+    
+    private ShaderMaterial shader;
 
-    public override void _Ready() => Enable(false);
+    public override void _Ready()
+    {
+        shader = Material as ShaderMaterial;
+        
+        Enable(false);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -19,7 +26,7 @@ public partial class GhostTrailParticle : CpuParticles2D
             new Rect2(new Vector2(playerSprite.Frame * 16, 0), new Vector2(16, 16));
         
         // flip image if necessary
-        ((ShaderMaterial)Material).SetShaderParameter("isFlipped", playerSprite.Scale.X < 0);
+        shader.SetShaderParameter("isFlipped", playerSprite.Scale.X < 0);
 
         // non-optimal way without shaders
         // var image = currentFrame.GetImage();

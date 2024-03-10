@@ -133,7 +133,6 @@ layer_0/tile_data = PackedInt32Array(2031616, 327681, 2, 2097152, 327681, 0, 216
 position = Vector2(528, 504)
 
 [node name="SwordOni" parent="." instance=ExtResource("4_4beuf")]
-visible = false
 position = Vector2(368, 504)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("5_tucja")]

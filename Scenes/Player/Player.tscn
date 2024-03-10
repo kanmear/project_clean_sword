@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=27 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.cs" id="3_b8s74"]
@@ -662,10 +662,6 @@ shader_parameter/isFlipped = null
 [sub_resource type="Gradient" id="Gradient_4g3xd"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sctd"]
-shader = ExtResource("12_srt72")
-shader_parameter/isFlipped = null
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "GhostTrailParticle")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
@@ -731,13 +727,12 @@ one_shot = true
 [node name="CPUParticles2D_dashGhostTrail" type="CPUParticles2D" parent="." node_paths=PackedStringArray("playerSprite")]
 texture_filter = 1
 material = SubResource("ShaderMaterial_uvjw8")
-amount = 3
+amount = 4
 lifetime = 0.1
 spread = 0.0
 gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_4g3xd")
 script = ExtResource("11_i1vxm")
 playerSprite = NodePath("../Sprite2D_player")
-shader = SubResource("ShaderMaterial_5sctd")
 
 [connection signal="body_entered" from="Sprite2D_player/Area2D_blade" to="Sprite2D_player/Area2D_blade" method="OnBodyEntered"]
