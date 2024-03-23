@@ -22,6 +22,8 @@ public class DashingPlayerState : PlayerState
 	    impulse = Player.DashImpulse;
         
 	    Player.GhostTrailParticle.Enable(true);
+        
+        Animator.Play(Name.ToString());
     }
 
     public override void ExitState()
@@ -53,7 +55,7 @@ public class DashingPlayerState : PlayerState
 		if (!Player.IsDashFinished()) return;
 		
 		if (isOnFloor) 
-			PlayerStateMachine.ChangeState(Player.DefaultPlayerState);
+			PlayerStateMachine.ChangeState(Player.IdlePlayerState);
 		else
 			PlayerStateMachine.ChangeState(Player.FallingPlayerState);
     }

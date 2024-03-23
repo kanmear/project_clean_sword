@@ -3,18 +3,20 @@ namespace ProjectCleanSword.Scripts.StateMachine.Player.ConcreteStates;
 using Godot;
 using Scripts.Player;
 
-public class DefaultPlayerState : PlayerState
+public class IdlePlayerState : PlayerState
 {
 	private Vector2 velocity;
     
-    public DefaultPlayerState(PlayerController player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+    public IdlePlayerState(PlayerController player, PlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
     {
-        Name = StateName.Default;
+        Name = StateName.Idle;
     }
 
     public override void EnterState()
     {
         velocity = Vector2.Zero;
+        
+        Animator.Play(Name.ToString());
     }
 
     public override void PhysicsProcess(float delta)

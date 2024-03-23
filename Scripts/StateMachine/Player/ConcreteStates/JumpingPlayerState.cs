@@ -16,6 +16,8 @@ public class JumpingPlayerState : PlayerState
     {
 	    velocity = Player.Velocity;
 	    velocity.Y = Player.JumpImpulse;
+        
+        Animator.Play(Name.ToString());
     }
 
     public override void PhysicsProcess(float delta)

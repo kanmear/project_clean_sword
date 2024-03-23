@@ -12,6 +12,11 @@ public class RunningPlayerState : PlayerState
 	    Name = StateName.Running;
     }
 
+    public override void EnterState()
+    {
+        Animator.Play(Name.ToString());
+    }
+
     public override void PhysicsProcess(float delta)
     {
 	    if (!Player.IsAbleToJump())
@@ -32,6 +37,6 @@ public class RunningPlayerState : PlayerState
 			Player.Move(velocity);
 		} 
 		else 
-			PlayerStateMachine.ChangeState(Player.DefaultPlayerState);
+			PlayerStateMachine.ChangeState(Player.IdlePlayerState);
     }
 }

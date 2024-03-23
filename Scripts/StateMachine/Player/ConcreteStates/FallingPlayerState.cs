@@ -12,13 +12,18 @@ public class FallingPlayerState : PlayerState
 	    Name = StateName.Falling;
     }
 
+    public override void EnterState()
+    {
+        Animator.Play(Name.ToString());
+    }
+
     public override void PhysicsProcess(float delta)
     {
         if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
 	    if (Player.IsOnFloor())
-		    PlayerStateMachine.ChangeState(Player.DefaultPlayerState);
+		    PlayerStateMachine.ChangeState(Player.IdlePlayerState);
 	    
 	    velocity = Player.Velocity;
 		velocity.Y += GlobalConstants.Gravity * delta;

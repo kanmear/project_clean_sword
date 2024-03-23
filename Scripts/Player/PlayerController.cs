@@ -9,7 +9,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 {
 	[Export] private BladeAnimator bladeAnimator;
 	[Export] private Timer dashCooldownTimer;
+    
 	[Export] public GhostTrailParticle GhostTrailParticle;
+	[Export] public PlayerAnimator PlayerAnimator;
 	
 	#region IMovable fields
 
@@ -39,8 +41,8 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	#region StateMachine fields
 
 	[Export] private string currentState;
-	public PlayerStateMachine StateMachine { get; private set; }	
-	public DefaultPlayerState DefaultPlayerState { get; private set; }	
+	private PlayerStateMachine StateMachine { get; set; }	
+	public IdlePlayerState IdlePlayerState { get; private set; }	
 	public RunningPlayerState RunningPlayerState { get; private set; }	
 	public JumpingPlayerState JumpingPlayerState { get; private set; }	
 	public FallingPlayerState FallingPlayerState { get; private set; }	
@@ -53,13 +55,13 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		Main.Player = this;
 
 		StateMachine = new PlayerStateMachine();
-		DefaultPlayerState = new DefaultPlayerState(this, StateMachine);
+		IdlePlayerState = new IdlePlayerState(this, StateMachine);
 		RunningPlayerState = new RunningPlayerState(this, StateMachine);
 		JumpingPlayerState = new JumpingPlayerState(this, StateMachine);
 		FallingPlayerState = new FallingPlayerState(this, StateMachine);
 		DashingPlayerState = new DashingPlayerState(this, StateMachine);
 		
-		StateMachine.Initialize(DefaultPlayerState);
+		StateMachine.Initialize(IdlePlayerState);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -82,9 +84,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		StateMachine.CurrentState.FrameProcess((float) delta);
 	}
 
-	public void Move(Vector2 vel)
+	public void Move(Vector2 velocityValue)
 	{
-        Velocity = vel;
+        Velocity = velocityValue;
 		MoveAndSlide();
 	}
 

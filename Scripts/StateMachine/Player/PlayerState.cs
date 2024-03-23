@@ -5,6 +5,7 @@ using Scripts.Player;
 public class PlayerState
 {
     protected readonly PlayerController Player;
+    protected readonly PlayerAnimator Animator;
     protected readonly PlayerStateMachine PlayerStateMachine;
 
     public StateName Name { get; protected init; }
@@ -12,6 +13,7 @@ public class PlayerState
     protected PlayerState(PlayerController player, PlayerStateMachine playerStateMachine)
     {
         Player = player;
+        Animator = player.PlayerAnimator;
         PlayerStateMachine = playerStateMachine;
     }
 
@@ -22,8 +24,7 @@ public class PlayerState
 
     public enum StateName
     {
-        Default,
-        Attacking,
+        Idle,
         Jumping,
         Running,
         Falling,
