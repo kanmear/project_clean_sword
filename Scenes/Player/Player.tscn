@@ -95,8 +95,85 @@ tracks/5/keys = {
 "values": [Vector2(0, 1.5)]
 }
 
+[sub_resource type="Animation" id="Animation_j2ypy"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ehkcj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_player:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_player:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_player:frame")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 13)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D_player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.5)]
+}
+
 [sub_resource type="Animation" id="Animation_w8e6g"]
-resource_name = "dashing"
+resource_name = "Dashing"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -172,8 +249,9 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_7s7sg"]
-resource_name = "falling"
+resource_name = "Falling"
 length = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -247,84 +325,8 @@ tracks/5/keys = {
 "values": [Vector2(0, 1.5)]
 }
 
-[sub_resource type="Animation" id="Animation_j2ypy"]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D_player:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_ehkcj")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D_player:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D_player:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D_player:frame")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(10, 13)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CollisionShape2D_player:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 1.5)]
-}
-
 [sub_resource type="Animation" id="Animation_v2yk7"]
-resource_name = "jumping"
+resource_name = "Jumping"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -400,8 +402,9 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_wi0vr"]
-resource_name = "running"
+resource_name = "Running"
 length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -477,12 +480,12 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjnm7"]
 _data = {
+"Dashing": SubResource("Animation_w8e6g"),
+"Falling": SubResource("Animation_7s7sg"),
+"Idle": SubResource("Animation_j2ypy"),
+"Jumping": SubResource("Animation_v2yk7"),
 "RESET": SubResource("Animation_58pu4"),
-"dashing": SubResource("Animation_w8e6g"),
-"falling": SubResource("Animation_7s7sg"),
-"idle": SubResource("Animation_j2ypy"),
-"jumping": SubResource("Animation_v2yk7"),
-"running": SubResource("Animation_wi0vr")
+"Running": SubResource("Animation_wi0vr")
 }
 
 [sub_resource type="Animation" id="Animation_lndkg"]
@@ -662,12 +665,13 @@ shader_parameter/isFlipped = null
 [sub_resource type="Gradient" id="Gradient_4g3xd"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "GhostTrailParticle")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "GhostTrailParticle", "PlayerAnimator")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
 bladeAnimator = NodePath("AnimationPlayer_blade")
 dashCooldownTimer = NodePath("Timer_dash")
 GhostTrailParticle = NodePath("CPUParticles2D_dashGhostTrail")
+PlayerAnimator = NodePath("AnimationPlayer_player")
 MovingSpeed = 250.0
 JumpImpulse = -450.0
 jumpWindow = 0.08
@@ -703,7 +707,7 @@ shape = SubResource("RectangleShape2D_fkbup")
 libraries = {
 "": SubResource("AnimationLibrary_rjnm7")
 }
-autoplay = "idle"
+autoplay = "Idle"
 script = ExtResource("7_jrb1d")
 playerController = NodePath("..")
 sprite2D = NodePath("../Sprite2D_player")
@@ -717,7 +721,7 @@ speed_scale = 1.5
 script = ExtResource("10_dq4bt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -40)
+offset = Vector2(0, -50)
 zoom = Vector2(2, 2)
 
 [node name="Timer_dash" type="Timer" parent="."]
@@ -727,7 +731,7 @@ one_shot = true
 [node name="CPUParticles2D_dashGhostTrail" type="CPUParticles2D" parent="." node_paths=PackedStringArray("playerSprite")]
 texture_filter = 1
 material = SubResource("ShaderMaterial_uvjw8")
-amount = 4
+amount = 5
 lifetime = 0.1
 spread = 0.0
 gravity = Vector2(0, 0)
