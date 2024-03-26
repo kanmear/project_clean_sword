@@ -26,9 +26,7 @@ public class IdlePlayerState : PlayerState
         if (!Player.IsOnFloor())
             PlayerStateMachine.ChangeState(Player.FallingPlayerState);
 
-        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
-            PlayerStateMachine.ChangeState(Player.DashingPlayerState);
-        if (Input.IsActionJustPressed("dash") & Player.IsDashReady())
+        if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
         if (Input.IsActionJustPressed("jump"))

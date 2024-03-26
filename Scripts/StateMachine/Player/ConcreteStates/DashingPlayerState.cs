@@ -40,6 +40,8 @@ public class DashingPlayerState : PlayerState
 	    var movingSpeed = Player.MovingSpeed;
 
 		velocity.X = impulse * (Player.IsFacingRight ? 1f : -1f);
+        
+		//NOTE weird way to handle this
 		impulse -= delta * 8000f;
 		if (impulse <= movingSpeed)
 		{

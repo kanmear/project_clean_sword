@@ -9,6 +9,7 @@ public partial class PlayerAnimator : AnimationPlayer
 
 	public override void _Process(double delta)
 	{
+		//NOTE weird way to handle this?
 		var x = playerController.Velocity.X switch
 		{
 			> 0 => 1,
