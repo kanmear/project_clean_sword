@@ -7,12 +7,13 @@ public partial class PlayerAnimator : AnimationPlayer
 {
 	[Export] private PlayerController playerController;
 	[Export] private Sprite2D sprite2D;
-    
-	private const string Idle = "Idle";
-	private const string IdleFlipped = "IdleFlipped";
-	private const string Falling = "Falling";
-	private const string FallingLoop = "FallingLoop";
-	private const string FallImpact = "FallImpact";
+
+	private static readonly StringName Idle = "Idle";
+	private static readonly StringName IdleStatic = "IdleStatic";
+	private static readonly StringName IdleFlipped = "IdleFlipped";
+	private static readonly StringName Falling = "Falling";
+	private static readonly StringName FallingLoop = "FallingLoop";
+	private static readonly StringName FallImpact = "FallImpact";
 
 	public override void _Process(double delta)
 	{
@@ -47,5 +48,13 @@ public partial class PlayerAnimator : AnimationPlayer
 	{
         Play(Falling);
         Queue(FallingLoop);
+	}
+
+	private void OnAnimationFinished(StringName animationName)
+	{
+		// if (animationName.Equals(IdleStatic))
+		// 	PlayIdle();
+		// else if (animationName.Equals(Idle) || animationName.Equals(IdleFlipped))
+		// 	Play(IdleStatic);
 	}
 }
