@@ -17,7 +17,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	[Export] public float MovingSpeed { get; set; } = 300.0f;
 	[Export] public float DashImpulse = 1600.0f;
-	[Export] public float JumpImpulse = -400.0f;
+	[Export] public float JumpImpulse = -400.0f; //NOTE try to increase it together with gravity for a snappier jump
 	[Export] public float SmoothDelta = 14f;
 	[Export] private float jumpWindow = 0.1f;
 	public bool IsFacingRight { get; set; } = true; 

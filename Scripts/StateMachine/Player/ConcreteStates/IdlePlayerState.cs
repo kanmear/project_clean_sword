@@ -12,11 +12,13 @@ public class IdlePlayerState : PlayerState
         Name = StateName.Idle;
     }
 
-    public override void EnterState()
+    public override void EnterState(object argument)
     {
-        velocity = Vector2.Zero;
+        var enteredFromAir = argument != null && (bool)argument;
         
-        Animator.Play(Name.ToString());
+        velocity = Vector2.Zero;
+
+        Animator.PlayIdle(enteredFromAir);
     }
 
     public override void PhysicsProcess(float delta)

@@ -12,7 +12,7 @@ public class JumpingPlayerState : PlayerState
 	    Name = StateName.Jumping;
     }
 
-    public override void EnterState()
+    public override void EnterState(object argument)
     {
 	    velocity = Player.Velocity;
 	    velocity.Y = Player.JumpImpulse;

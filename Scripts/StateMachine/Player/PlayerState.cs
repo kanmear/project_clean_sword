@@ -1,3 +1,5 @@
+using System;
+
 namespace ProjectCleanSword.Scripts.StateMachine.Player;
 
 using Scripts.Player;
@@ -17,7 +19,7 @@ public class PlayerState
         PlayerStateMachine = playerStateMachine;
     }
 
-    public virtual void EnterState() { }
+    public virtual void EnterState(object argument) { }
     public virtual void ExitState() { }
     public virtual void FrameProcess(float delta) { }
     public virtual void PhysicsProcess(float delta) { }

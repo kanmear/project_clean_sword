@@ -14,7 +14,7 @@ public class DashingPlayerState : PlayerState
 		Name = StateName.Dashing;
 	}
 
-    public override void EnterState()
+    public override void EnterState(object argument)
     {
 	    Player.StartDashTimer();
 	    
@@ -57,7 +57,7 @@ public class DashingPlayerState : PlayerState
 		if (!Player.IsDashFinished()) return;
 		
 		if (isOnFloor) 
-			PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+			PlayerStateMachine.ChangeState(Player.IdlePlayerState, false);
 		else
 			PlayerStateMachine.ChangeState(Player.FallingPlayerState);
     }

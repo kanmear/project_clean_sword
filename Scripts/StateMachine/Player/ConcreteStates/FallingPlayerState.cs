@@ -12,9 +12,9 @@ public class FallingPlayerState : PlayerState
 	    Name = StateName.Falling;
     }
 
-    public override void EnterState()
+    public override void EnterState(object argument)
     {
-        Animator.Play(Name.ToString());
+	    Animator.PlayFalling();
     }
 
     public override void PhysicsProcess(float delta)
@@ -23,7 +23,7 @@ public class FallingPlayerState : PlayerState
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
 	    if (Player.IsOnFloor())
-		    PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+		    PlayerStateMachine.ChangeState(Player.IdlePlayerState, true);
 	    
 	    velocity = Player.Velocity;
 		velocity.Y += GlobalConstants.Gravity * delta;

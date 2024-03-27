@@ -12,7 +12,7 @@ public class RunningPlayerState : PlayerState
 	    Name = StateName.Running;
     }
 
-    public override void EnterState()
+    public override void EnterState(object argument)
     {
         Animator.Play(Name.ToString());
     }
@@ -39,6 +39,6 @@ public class RunningPlayerState : PlayerState
 			Player.Move(velocity);
 		} 
 		else 
-			PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+			PlayerStateMachine.ChangeState(Player.IdlePlayerState, false);
     }
 }
