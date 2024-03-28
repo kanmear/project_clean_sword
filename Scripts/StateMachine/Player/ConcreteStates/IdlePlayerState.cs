@@ -1,3 +1,5 @@
+using ProjectCleanSword.Scripts.Effects;
+
 namespace ProjectCleanSword.Scripts.StateMachine.Player.ConcreteStates;
 
 using Godot;
@@ -19,6 +21,9 @@ public class IdlePlayerState : PlayerState
         velocity = Vector2.Zero;
 
         Animator.PlayIdle(enteredFromAir);
+        
+        if (enteredFromAir) 
+            EffectsHandler.InstantiateSprite(EffectsHandler.PlayerLandVfx);
     }
 
     public override void PhysicsProcess(float delta)

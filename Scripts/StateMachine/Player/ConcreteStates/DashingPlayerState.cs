@@ -1,3 +1,5 @@
+using ProjectCleanSword.Scripts.Effects;
+
 namespace ProjectCleanSword.Scripts.StateMachine.Player.ConcreteStates;
 
 using Godot;
@@ -24,6 +26,8 @@ public class DashingPlayerState : PlayerState
 	    Player.GhostTrailParticle.Enable(true);
         
         Animator.Play(Name.ToString());
+        
+        EffectsHandler.InstantiateSprite(EffectsHandler.PlayerDashVfx);
     }
 
     public override void ExitState()

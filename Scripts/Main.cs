@@ -1,10 +1,11 @@
 using Godot;
+using ProjectCleanSword.Scripts.Player;
 
 namespace ProjectCleanSword.Scripts;
 
 public partial class Main : Node
 {
-    public static Node2D Player { get; set; }
+    public static PlayerController Player { get; set; }
     [Export] private PackedScene enemy;
     private RandomNumberGenerator generator;
 

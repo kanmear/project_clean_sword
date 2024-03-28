@@ -1,3 +1,5 @@
+using ProjectCleanSword.Scripts.Effects;
+
 namespace ProjectCleanSword.Scripts.StateMachine.Player.ConcreteStates;
 
 using Godot;
@@ -18,6 +20,8 @@ public class JumpingPlayerState : PlayerState
 	    velocity.Y = Player.JumpImpulse;
         
         Animator.Play(Name.ToString());
+
+        EffectsHandler.InstantiateSprite(EffectsHandler.PlayerJumpVfx);
     }
 
     public override void PhysicsProcess(float delta)
