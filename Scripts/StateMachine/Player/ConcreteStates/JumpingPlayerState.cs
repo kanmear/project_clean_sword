@@ -26,8 +26,11 @@ public class JumpingPlayerState : PlayerState
 
     public override void PhysicsProcess(float delta)
     {
-        if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+	    if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+	    {
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
+            return;
+	    }
         
 	    if (velocity.Y >= 0)
 		    PlayerStateMachine.ChangeState(Player.FallingPlayerState);
