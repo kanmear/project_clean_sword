@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=45 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.cs" id="3_b8s74"]
@@ -17,12 +17,105 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/DashHorizontalFlip.gdshader" id="12_srt72"]
 [ext_resource type="Texture2D" uid="uid://0eumgvrol61y" path="res://Sprites/Player/ronin_jump_wall_kick.png" id="12_w541r"]
 [ext_resource type="Texture2D" uid="uid://18f61m40ntju" path="res://Sprites/Player/ronin_jump_recharged.png" id="13_kr2e0"]
+[ext_resource type="Texture2D" uid="uid://ckl8vbqn8n2nr" path="res://Sprites/Player/ronin_attack_land_1.png" id="14_83dv1"]
+[ext_resource type="Texture2D" uid="uid://c3ampfawymxkp" path="res://Sprites/Player/ronin_attack_land_2.png" id="15_5puxd"]
+[ext_resource type="Texture2D" uid="uid://cgb07ya0xefyn" path="res://Sprites/Player/ronin_attack_land_3.png" id="16_uo4q4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6jeo"]
 size = Vector2(25, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkbup"]
 size = Vector2(10, 13)
+
+[sub_resource type="Animation" id="Animation_ksyai"]
+resource_name = "AttackLand1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_83dv1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_player:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_player:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_player:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 13)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D_player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.5)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnAttackAnimationFinished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_w8e6g"]
 resource_name = "Dashing"
@@ -963,8 +1056,191 @@ tracks/5/keys = {
 "values": [Vector2(-14.5, -3)]
 }
 
+[sub_resource type="Animation" id="Animation_dltop"]
+resource_name = "AttackLand2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_5puxd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_player:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_player:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_player:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 13)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D_player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.5)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnAttackAnimationFinished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hhvoq"]
+resource_name = "AttackLand3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_uo4q4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D_player:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D_player:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D_player:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D_player:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 13)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CollisionShape2D_player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.5)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnAttackAnimationFinished"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjnm7"]
 _data = {
+"AttackLand1": SubResource("Animation_ksyai"),
+"AttackLand2": SubResource("Animation_dltop"),
+"AttackLand3": SubResource("Animation_hhvoq"),
 "Dashing": SubResource("Animation_w8e6g"),
 "FallImpact": SubResource("Animation_ed4tf"),
 "Falling": SubResource("Animation_7s7sg"),
@@ -1159,11 +1435,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftdx3"]
 size = Vector2(6, 9)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "GhostTrailParticle", "PlayerAnimator")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "attackCooldownTimer", "attackComboTimer", "GhostTrailParticle", "PlayerAnimator")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
 bladeAnimator = NodePath("AnimationPlayer_blade")
 dashCooldownTimer = NodePath("Timer_dash")
+attackCooldownTimer = NodePath("Timer_attack")
+attackComboTimer = NodePath("Timer_combo")
 GhostTrailParticle = NodePath("CPUParticles2D_ghostTrail")
 PlayerAnimator = NodePath("AnimationPlayer_player")
 MovingSpeed = 200.0
@@ -1224,6 +1502,12 @@ zoom = Vector2(2, 2)
 wait_time = 2.0
 one_shot = true
 
+[node name="Timer_attack" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_combo" type="Timer" parent="."]
+one_shot = true
+
 [node name="CPUParticles2D_ghostTrail" type="CPUParticles2D" parent="." node_paths=PackedStringArray("playerSprite")]
 texture_filter = 1
 material = SubResource("ShaderMaterial_uvjw8")
@@ -1245,5 +1529,6 @@ shape = SubResource("RectangleShape2D_ftdx3")
 
 [connection signal="body_entered" from="Sprite2D_player/Area2D_blade" to="Sprite2D_player/Area2D_blade" method="OnBodyEntered"]
 [connection signal="animation_finished" from="AnimationPlayer_player" to="AnimationPlayer_player" method="OnAnimationFinished"]
+[connection signal="timeout" from="Timer_combo" to="." method="OnComboTimerTimeout"]
 [connection signal="body_entered" from="Area2D_wallKickTileDetection" to="." method="OnBackdropTileEntered"]
 [connection signal="body_exited" from="Area2D_wallKickTileDetection" to="." method="OnBackdropTileExited"]

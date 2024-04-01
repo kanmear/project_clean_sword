@@ -28,7 +28,7 @@ public class FallingPlayerState : PlayerState
 		   return;
 	    }
 
-	    if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+	    if (Input.IsActionJustPressed("dash") && Player.IsDashAvailable())
 	    {
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
             return;

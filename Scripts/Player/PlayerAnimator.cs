@@ -10,11 +10,15 @@ public partial class PlayerAnimator : AnimationPlayer
 	private static readonly StringName Idle = "Idle";
 	private static readonly StringName IdleStatic = "IdleStatic";
 	private static readonly StringName IdleFlipped = "IdleFlipped";
+    
 	private static readonly StringName Falling = "Falling";
 	private static readonly StringName FallingLoop = "FallingLoop";
 	private static readonly StringName FallImpact = "FallImpact";
+    
 	private static readonly StringName Wallkick = "Wallkick";
 	private static readonly StringName RechargedJump = "RechargedJump";
+
+	private static readonly StringName AttackLand = "AttackLand";
 
 	public override void _Process(double delta)
 	{
@@ -61,6 +65,13 @@ public partial class PlayerAnimator : AnimationPlayer
 	{
 		SpeedScale = 1.5f;
 		Play(RechargedJump); 
+	}
+
+	public void PlayLandAttack(int comboCount)
+	{
+		Play(AttackLand + $"{comboCount}");
+        
+		//TODO use separate animation player to animate blade
 	}
 
 	private void OnAnimationFinished(StringName animationName)

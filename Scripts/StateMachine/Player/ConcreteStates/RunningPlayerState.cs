@@ -19,7 +19,13 @@ public class RunningPlayerState : PlayerState
 
     public override void PhysicsProcess(float delta)
     {
-	    if (!Player.IsAbleToJump())
+        if (Input.IsActionJustPressed("attack") && Player.IsAttackAvailable())
+        {
+            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
+            return;
+        }
+        
+	    if (!Player.IsJumpAvailable())
 	    {
 		    PlayerStateMachine.ChangeState(Player.FallingPlayerState);
 		    return;
@@ -31,7 +37,7 @@ public class RunningPlayerState : PlayerState
 		    return;
 	    }
         
-		if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+		if (Input.IsActionJustPressed("dash") && Player.IsDashAvailable())
         {
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
             return;

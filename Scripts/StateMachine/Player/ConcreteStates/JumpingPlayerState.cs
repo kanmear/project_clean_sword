@@ -30,7 +30,7 @@ public class JumpingPlayerState : PlayerState
 			}
 			else
 			{
-				Player.SetRechargedJumpAvailable(false);
+				Player.SetRechargedJumpAvailability(false);
 				
 				Animator.PlayRechargedJump();
 				EffectsHandler.InstantiateSprite(EffectsHandler.PlayerRechargedJumpVfx);
@@ -58,7 +58,7 @@ public class JumpingPlayerState : PlayerState
 		    }
 		    else if (Player.IsRechargedJumpAvailable())
 		    {
-				Player.SetRechargedJumpAvailable(false);
+				Player.SetRechargedJumpAvailability(false);
 				
 				velocity.Y = Player.JumpImpulse;
 				
@@ -67,7 +67,7 @@ public class JumpingPlayerState : PlayerState
 		    }
 	    }
         
-	    else if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+	    else if (Input.IsActionJustPressed("dash") && Player.IsDashAvailable())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
 
 	    else if (velocity.Y >= 0)

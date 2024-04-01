@@ -9,6 +9,8 @@ public partial class PlayerController : CharacterBody2D, IMovable
 {
 	[Export] private BladeAnimator bladeAnimator;
 	[Export] private Timer dashCooldownTimer;
+	[Export] private Timer attackCooldownTimer;
+	[Export] private Timer attackComboTimer;
     
 	[Export] public GhostTrailParticle GhostTrailParticle;
 	[Export] public PlayerAnimator PlayerAnimator;
@@ -30,11 +32,13 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	private float fDelta;
 
 	private float timeSinceLeftFloor;
-	private float attackCooldown = 0.2f;
-	private float timeSinceLastAttack;
 	
 	private float dashCooldown = 2f;
 	private float dashLength = 0.2f;
+
+	private float attackCooldown = 0.3f;
+	private float attackComboTimeout = 1.0f;
+	private int attackComboCount;
 
 	private bool isAgainstWall;
 	private bool isWallkickAvailable = true;
@@ -52,6 +56,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	public JumpingPlayerState JumpingPlayerState { get; private set; }	
 	public FallingPlayerState FallingPlayerState { get; private set; }	
 	public DashingPlayerState DashingPlayerState { get; private set; }	
+	public AttackingPlayerState AttackingPlayerState { get; private set; }	
 
 	#endregion
 	
@@ -65,6 +70,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		JumpingPlayerState = new JumpingPlayerState(this, StateMachine);
 		FallingPlayerState = new FallingPlayerState(this, StateMachine);
 		DashingPlayerState = new DashingPlayerState(this, StateMachine);
+		AttackingPlayerState = new AttackingPlayerState(this, StateMachine);
 		
 		StateMachine.Initialize(IdlePlayerState);
 	}
@@ -76,12 +82,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		StateMachine.CurrentState.PhysicsProcess(fDelta);
 		currentState = StateMachine.CurrentState.Name.ToString(); //NOTE for debug
 
-		if (Input.IsActionJustPressed("attack"))
-		{
-			bladeAnimator.PlayAttack();
-		}
-
-		IsAbleToJump();
+		IsJumpAvailable();
 	}
 
 	public override void _Process(double delta)
@@ -95,7 +96,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		MoveAndSlide();
 	}
 
-	public bool IsAbleToJump()
+	#region jump state helper methods
+    
+	public bool IsJumpAvailable()
 	{
 		if (!IsOnFloor())
 		{
@@ -106,9 +109,19 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		timeSinceLeftFloor = 0f;
 		return true;
 	}
+    
+	public bool IsWallKickAvailable() => isAgainstWall && isWallkickAvailable;
+	public void SetWallkickAvailability(bool value) => isWallkickAvailable = value;
 
+	public bool IsRechargedJumpAvailable() => isRechargedJumpAvailable;
+	public void SetRechargedJumpAvailability(bool value) => isRechargedJumpAvailable = value;
+    
+	#endregion
+
+	#region dash state helper methods
+    
 	public void StartDashTimer() => dashCooldownTimer.Start(dashCooldown);
-	public bool IsDashReady() => dashCooldownTimer.IsStopped();
+	public bool IsDashAvailable() => dashCooldownTimer.IsStopped();
 	public bool IsDashFinished() => dashCooldownTimer.TimeLeft <= dashCooldown - dashLength;
 
 	// ReSharper disable once UnusedParameter.Local
@@ -116,10 +129,26 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	// ReSharper disable once UnusedParameter.Local
 	private void OnBackdropTileExited(Node2D body) => isAgainstWall = false;
+    
+	#endregion
 
-	public bool IsWallKickAvailable() => isAgainstWall && isWallkickAvailable;
-	public void SetWallkickAvailability(bool value) => isWallkickAvailable = value;
+	#region attack state helper methods
 
-	public bool IsRechargedJumpAvailable() => isRechargedJumpAvailable;
-	public void SetRechargedJumpAvailable(bool value) => isRechargedJumpAvailable = value;
+	public void StartAttackCooldownTimer() => attackCooldownTimer.Start(attackCooldown);
+	public bool IsAttackAvailable() => attackCooldownTimer.IsStopped();
+
+	public void StartAttackComboTimer() => attackComboTimer.Start(attackComboTimeout);
+	public bool IsComboAvailable() => !attackComboTimer.IsStopped();
+
+	public int IncrementComboCount() =>
+		attackComboCount = ++attackComboCount <= 3
+			? attackComboCount
+			: 1;
+
+	public int GetComboCount() => attackComboCount;
+	private void OnAttackAnimationFinished() => StateMachine.CurrentState.OnAnimationFinished();
+
+	private void OnComboTimerTimeout() => attackComboCount = 0;
+
+	#endregion
 }

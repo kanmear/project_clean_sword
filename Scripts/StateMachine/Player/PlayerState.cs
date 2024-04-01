@@ -23,6 +23,7 @@ public class PlayerState
     public virtual void ExitState() { }
     public virtual void FrameProcess(float delta) { }
     public virtual void PhysicsProcess(float delta) { }
+    public virtual void OnAnimationFinished() { }
 
     public enum StateName
     {
@@ -30,6 +31,7 @@ public class PlayerState
         Jumping,
         Running,
         Falling,
-        Dashing
+        Dashing,
+        Attacking
     }
 }

@@ -17,7 +17,7 @@ public class IdlePlayerState : PlayerState
     public override void EnterState(object argument)
     {
         Player.SetWallkickAvailability(true);
-        Player.SetRechargedJumpAvailable(false);
+        Player.SetRechargedJumpAvailability(false);
         
         var enteredFromAir = argument != null && (bool)argument;
         
@@ -39,7 +39,13 @@ public class IdlePlayerState : PlayerState
             return;
         }
 
-        if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+        if (Input.IsActionJustPressed("attack") && Player.IsAttackAvailable())
+        {
+            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
+            return;
+        }
+
+        if (Input.IsActionJustPressed("dash") && Player.IsDashAvailable())
         {
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
             return;
