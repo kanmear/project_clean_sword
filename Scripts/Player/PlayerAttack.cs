@@ -10,7 +10,9 @@ public partial class PlayerAttack : Area2D
         if (body is IDamageable damageable)
         {
             damageable.Damage(10);
-            Main.Player.SetRechargedJumpAvailable(true);
+
+            if (!Main.Player.IsOnFloor())
+                Main.Player.SetRechargedJumpAvailable(true);
         }
     }
 }
