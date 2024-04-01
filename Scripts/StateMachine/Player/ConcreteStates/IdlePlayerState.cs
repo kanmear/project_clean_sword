@@ -16,6 +16,7 @@ public class IdlePlayerState : PlayerState
 
     public override void EnterState(object argument)
     {
+        Player.SetWallkickAvailability(true);
         var enteredFromAir = argument != null && (bool)argument;
         
         velocity = Vector2.Zero;
@@ -30,16 +31,16 @@ public class IdlePlayerState : PlayerState
     {
         Player.Move(velocity);
 
-        if (!Player.IsOnFloor())
+        if (!Player.IsOnFloor()) 
             PlayerStateMachine.ChangeState(Player.FallingPlayerState);
-
-        if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+            
+        else if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
             PlayerStateMachine.ChangeState(Player.DashingPlayerState);
         
-        if (Input.IsActionJustPressed("jump"))
+        else if (Input.IsActionJustPressed("jump"))
             PlayerStateMachine.ChangeState(Player.JumpingPlayerState);
 
-        if (Input.IsActionPressed("left") ^ Input.IsActionPressed("right"))
+        else if (Input.IsActionPressed("left") ^ Input.IsActionPressed("right"))
             PlayerStateMachine.ChangeState(Player.RunningPlayerState);
     }
 }

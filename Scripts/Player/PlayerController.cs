@@ -35,6 +35,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	
 	private float dashCooldown = 2f;
 	private float dashLength = 0.2f;
+
+	private bool isAgainstWall;
+	private bool isWallkickAvailable = true;
 	
 	#endregion
 
@@ -105,4 +108,13 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	public void StartDashTimer() => dashCooldownTimer.Start(dashCooldown);
 	public bool IsDashReady() => dashCooldownTimer.IsStopped();
 	public bool IsDashFinished() => dashCooldownTimer.TimeLeft <= dashCooldown - dashLength;
+
+	// ReSharper disable once UnusedParameter.Local
+	private void OnBackdropTileEntered(Node2D body) => isAgainstWall = true;
+
+	// ReSharper disable once UnusedParameter.Local
+	private void OnBackdropTileExited(Node2D body) => isAgainstWall = false;
+
+	public bool IsWallKickAvailable() => isAgainstWall && isWallkickAvailable;
+	public void SetWallkickAvailability(bool value) => isWallkickAvailable = value;
 }

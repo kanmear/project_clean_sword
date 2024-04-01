@@ -18,22 +18,42 @@ public class JumpingPlayerState : PlayerState
     {
 	    velocity = Player.Velocity;
 	    velocity.Y = Player.JumpImpulse;
-        
-        Animator.Play(Name.ToString());
 
-        EffectsHandler.InstantiateSprite(EffectsHandler.PlayerJumpVfx);
+	    var isWallkick = argument != null && (bool)argument;
+	    if (isWallkick)
+	    {
+		    Player.SetWallkickAvailability(false);
+            
+		    Animator.PlayWallkickJump();
+			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
+	    }
+	    else
+	    {
+		    Animator.Play(Name.ToString());
+			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerJumpVfx);
+	    }
     }
 
     public override void PhysicsProcess(float delta)
     {
-	    if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+	    if (Input.IsActionJustPressed("jump") && Player.IsWallKickAvailable())
 	    {
-            PlayerStateMachine.ChangeState(Player.DashingPlayerState);
-            return;
+            Player.SetWallkickAvailability(false);
+            
+			velocity.Y = Player.JumpImpulse;
+            
+		    Animator.PlayWallkickJump();
+			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
 	    }
         
-	    if (velocity.Y >= 0)
+	    else if (Input.IsActionJustPressed("dash") && Player.IsDashReady())
+            PlayerStateMachine.ChangeState(Player.DashingPlayerState);
+
+	    else if (velocity.Y >= 0)
+	    {
 		    PlayerStateMachine.ChangeState(Player.FallingPlayerState);
+		    return;
+	    }
 	    
 		velocity.Y += GlobalConstants.Gravity * delta;
         

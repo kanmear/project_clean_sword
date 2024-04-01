@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 namespace ProjectCleanSword.Scripts.Player;
@@ -14,6 +13,7 @@ public partial class PlayerAnimator : AnimationPlayer
 	private static readonly StringName Falling = "Falling";
 	private static readonly StringName FallingLoop = "FallingLoop";
 	private static readonly StringName FallImpact = "FallImpact";
+	private static readonly StringName Wallkick = "Wallkick";
 
 	public override void _Process(double delta)
 	{
@@ -50,8 +50,16 @@ public partial class PlayerAnimator : AnimationPlayer
         Queue(FallingLoop);
 	}
 
+	public void PlayWallkickJump()
+	{
+		SpeedScale = 1.5f;
+		Play(Wallkick);
+	}
+
 	private void OnAnimationFinished(StringName animationName)
 	{
+		if (animationName.Equals(Wallkick))
+			SpeedScale = 1f;
 		// if (animationName.Equals(IdleStatic))
 		// 	PlayIdle();
 		// else if (animationName.Equals(Idle) || animationName.Equals(IdleFlipped))
