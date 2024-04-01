@@ -19,31 +19,52 @@ public class JumpingPlayerState : PlayerState
 	    velocity = Player.Velocity;
 	    velocity.Y = Player.JumpImpulse;
 
-	    var isWallkick = argument != null && (bool)argument;
-	    if (isWallkick)
+	    if (argument != null)
 	    {
-		    Player.SetWallkickAvailability(false);
-            
-		    Animator.PlayWallkickJump();
-			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
+			if ((bool)argument)
+			{
+				Player.SetWallkickAvailability(false);
+				
+				Animator.PlayWallkickJump();
+				EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
+			}
+			else
+			{
+				Player.SetRechargedJumpAvailable(false);
+				
+				Animator.PlayRechargedJump();
+				EffectsHandler.InstantiateSprite(EffectsHandler.PlayerRechargedJumpVfx);
+			}
 	    }
 	    else
 	    {
-		    Animator.Play(Name.ToString());
+			Animator.Play(Name.ToString());
 			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerJumpVfx);
 	    }
     }
 
     public override void PhysicsProcess(float delta)
     {
-	    if (Input.IsActionJustPressed("jump") && Player.IsWallKickAvailable())
+	    if (Input.IsActionJustPressed("jump"))
 	    {
-            Player.SetWallkickAvailability(false);
-            
-			velocity.Y = Player.JumpImpulse;
-            
-		    Animator.PlayWallkickJump();
-			EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
+		    if (Player.IsWallKickAvailable())
+		    {
+				Player.SetWallkickAvailability(false);
+				
+				velocity.Y = Player.JumpImpulse;
+				
+				Animator.PlayWallkickJump();
+				EffectsHandler.InstantiateSprite(EffectsHandler.PlayerWallkickVfx);
+		    }
+		    else if (Player.IsRechargedJumpAvailable())
+		    {
+				Player.SetRechargedJumpAvailable(false);
+				
+				velocity.Y = Player.JumpImpulse;
+				
+				Animator.PlayRechargedJump();
+				EffectsHandler.InstantiateSprite(EffectsHandler.PlayerRechargedJumpVfx);
+		    }
 	    }
         
 	    else if (Input.IsActionJustPressed("dash") && Player.IsDashReady())

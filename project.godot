@@ -34,6 +34,10 @@ folder_colors={
 "res://Sprites/": "pink"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 jump={

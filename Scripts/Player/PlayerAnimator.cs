@@ -14,6 +14,7 @@ public partial class PlayerAnimator : AnimationPlayer
 	private static readonly StringName FallingLoop = "FallingLoop";
 	private static readonly StringName FallImpact = "FallImpact";
 	private static readonly StringName Wallkick = "Wallkick";
+	private static readonly StringName RechargedJump = "RechargedJump";
 
 	public override void _Process(double delta)
 	{
@@ -55,10 +56,16 @@ public partial class PlayerAnimator : AnimationPlayer
 		SpeedScale = 1.5f;
 		Play(Wallkick);
 	}
+    
+	public void PlayRechargedJump()
+	{
+		SpeedScale = 1.5f;
+		Play(RechargedJump); 
+	}
 
 	private void OnAnimationFinished(StringName animationName)
 	{
-		if (animationName.Equals(Wallkick))
+		if (animationName.Equals(Wallkick) || animationName.Equals(RechargedJump))
 			SpeedScale = 1f;
 		// if (animationName.Equals(IdleStatic))
 		// 	PlayIdle();

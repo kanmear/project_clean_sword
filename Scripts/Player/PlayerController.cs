@@ -38,6 +38,8 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	private bool isAgainstWall;
 	private bool isWallkickAvailable = true;
+
+	private bool isRechargedJumpAvailable;
 	
 	#endregion
 
@@ -117,4 +119,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	public bool IsWallKickAvailable() => isAgainstWall && isWallkickAvailable;
 	public void SetWallkickAvailability(bool value) => isWallkickAvailable = value;
+
+	public bool IsRechargedJumpAvailable() => isRechargedJumpAvailable;
+	public void SetRechargedJumpAvailable(bool value) => isRechargedJumpAvailable = value;
 }
