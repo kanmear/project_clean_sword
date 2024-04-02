@@ -1,3 +1,4 @@
+// ReSharper disable UnusedParameter.Local
 namespace ProjectCleanSword.Scripts.Player;
 
 using Godot;
@@ -120,6 +121,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	public bool IsRechargedJumpAvailable() => isRechargedJumpAvailable;
 	public void SetRechargedJumpAvailability(bool value) => isRechargedJumpAvailable = value;
+
+	private void OnBackdropTileEntered(Node2D body) => isAgainstWall = true;
+	private void OnBackdropTileExited(Node2D body) => isAgainstWall = false;
     
 	#endregion
 
@@ -128,12 +132,6 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	public void StartDashTimer() => dashCooldownTimer.Start(dashCooldown);
 	public bool IsDashAvailable() => dashCooldownTimer.IsStopped();
 	public bool IsDashFinished() => dashCooldownTimer.TimeLeft <= dashCooldown - dashLength;
-
-	// ReSharper disable once UnusedParameter.Local
-	private void OnBackdropTileEntered(Node2D body) => isAgainstWall = true;
-
-	// ReSharper disable once UnusedParameter.Local
-	private void OnBackdropTileExited(Node2D body) => isAgainstWall = false;
     
 	#endregion
 
@@ -151,7 +149,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 			: 1;
 
 	public int GetComboCount() => attackComboCount;
-	private void OnAttackAnimationFinished() => StateMachine.CurrentState.OnAnimationFinished();
+	private void OnAttackAnimationFinished() => StateMachine.CurrentState.OnCustomEvent();
 
 	private void OnComboTimerTimeout() => attackComboCount = 0;
 

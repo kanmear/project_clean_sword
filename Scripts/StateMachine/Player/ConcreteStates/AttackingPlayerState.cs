@@ -58,5 +58,6 @@ public class AttackingPlayerState : PlayerState
             PlayerStateMachine.ChangeState(Player.RunningPlayerState);
     }
 
-    public override void OnAnimationFinished() => PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+    //NOTE is fired when attack animation is finished
+    public override void OnCustomEvent() => PlayerStateMachine.ChangeState(Player.IdlePlayerState);
 }

@@ -23,7 +23,7 @@ public class PlayerState
     public virtual void ExitState() { }
     public virtual void FrameProcess(float delta) { }
     public virtual void PhysicsProcess(float delta) { }
-    public virtual void OnAnimationFinished() { }
+    public virtual void OnCustomEvent() { }
 
     public enum StateName
     {
