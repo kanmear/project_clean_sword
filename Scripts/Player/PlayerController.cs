@@ -82,6 +82,11 @@ public partial class PlayerController : CharacterBody2D, IMovable
 		StateMachine.CurrentState.PhysicsProcess(fDelta);
 		currentState = StateMachine.CurrentState.Name.ToString(); //NOTE for debug
 
+		// if (Input.IsActionJustPressed("attack") && !IsOnFloor())
+		// {
+		// 	bladeAnimator.PlayAttack();
+		// }
+        
 		IsJumpAvailable();
 	}
 
