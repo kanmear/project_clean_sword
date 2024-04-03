@@ -15,6 +15,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
     
 	[Export] public GhostTrailParticle GhostTrailParticle;
 	[Export] public PlayerAnimator PlayerAnimator;
+	[Export] public PlatformEdgeDetector PlatformEdgeDetector;
 	
 	#region IMovable fields
 
@@ -37,6 +38,7 @@ public partial class PlayerController : CharacterBody2D, IMovable
 	private float dashCooldown = 2f;
 	private float dashLength = 0.2f;
 
+	private bool isMovable = true;
 	private float attackCooldown = 0.3f;
 	private float attackComboTimeout = 1.0f;
 	private int attackComboCount;
@@ -137,6 +139,9 @@ public partial class PlayerController : CharacterBody2D, IMovable
 
 	#region attack state helper methods
 
+	public void SetMovable(bool value) => isMovable = value;
+	public bool IsMovable() => isMovable;
+    
 	public void StartAttackCooldownTimer() => attackCooldownTimer.Start(attackCooldown);
 	public bool IsAttackAvailable() => attackCooldownTimer.IsStopped();
 

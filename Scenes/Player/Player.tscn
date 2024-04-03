@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://htncbmesy7qc"]
+[gd_scene load_steps=46 format=3 uid="uid://htncbmesy7qc"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_sx70g"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerAttack.cs" id="3_b8s74"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ckl8vbqn8n2nr" path="res://Sprites/Player/ronin_attack_land_1.png" id="14_83dv1"]
 [ext_resource type="Texture2D" uid="uid://c3ampfawymxkp" path="res://Sprites/Player/ronin_attack_land_2.png" id="15_5puxd"]
 [ext_resource type="Texture2D" uid="uid://cgb07ya0xefyn" path="res://Sprites/Player/ronin_attack_land_3.png" id="16_uo4q4"]
+[ext_resource type="Script" path="res://Scripts/Player/PlatformEdgeDetector.cs" id="21_ethmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6jeo"]
 size = Vector2(25, 13)
@@ -1435,7 +1436,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftdx3"]
 size = Vector2(6, 9)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "attackCooldownTimer", "attackComboTimer", "GhostTrailParticle", "PlayerAnimator")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bladeAnimator", "dashCooldownTimer", "attackCooldownTimer", "attackComboTimer", "GhostTrailParticle", "PlayerAnimator", "PlatformEdgeDetector")]
 collision_layer = 2
 script = ExtResource("1_sx70g")
 bladeAnimator = NodePath("AnimationPlayer_blade")
@@ -1444,6 +1445,7 @@ attackCooldownTimer = NodePath("Timer_attack")
 attackComboTimer = NodePath("Timer_combo")
 GhostTrailParticle = NodePath("CPUParticles2D_ghostTrail")
 PlayerAnimator = NodePath("AnimationPlayer_player")
+PlatformEdgeDetector = NodePath("Sprite2D_player/RayCast2D")
 MovingSpeed = 200.0
 DashImpulse = 1200.0
 JumpImpulse = -450.0
@@ -1472,6 +1474,12 @@ script = ExtResource("3_b8s74")
 position = Vector2(-14.5, -3)
 shape = SubResource("RectangleShape2D_b6jeo")
 disabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D_player" node_paths=PackedStringArray("playerController")]
+position = Vector2(9, -4)
+target_position = Vector2(0, 14)
+script = ExtResource("21_ethmo")
+playerController = NodePath("../..")
 
 [node name="CollisionShape2D_player" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)

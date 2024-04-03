@@ -14,6 +14,8 @@ public class AttackingPlayerState : PlayerState
 
     public override void EnterState(object argument)
     {
+        Player.PlatformEdgeDetector.Enable(true);
+        
         Player.StartAttackCooldownTimer();
         
         Player.StartAttackComboTimer();
@@ -30,8 +32,11 @@ public class AttackingPlayerState : PlayerState
 
     public override void PhysicsProcess(float delta)
     {
-        velocity.X = Mathf.MoveToward(velocity.X, 0, Player.SmoothDelta);
-        Player.Move(velocity);
+        if (Player.IsOnFloor() && Player.IsMovable())
+        {
+            velocity.X = Mathf.MoveToward(velocity.X, 0, Player.SmoothDelta);
+            Player.Move(velocity);
+        }
         
         if (!Player.IsOnFloor())
         {
@@ -59,5 +64,9 @@ public class AttackingPlayerState : PlayerState
     }
 
     //NOTE is fired when attack animation is finished
-    public override void OnCustomEvent() => PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+    public override void OnCustomEvent()
+    {
+        PlayerStateMachine.ChangeState(Player.IdlePlayerState);
+        Player.PlatformEdgeDetector.Enable(false);
+    }
 }
