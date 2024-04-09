@@ -14,7 +14,7 @@ public class RunningPlayerState : PlayerState
 
     public override void EnterState(object argument)
     {
-        Animator.Play(Name.ToString());
+        Animator.PlayRunning();
     }
 
     public override void PhysicsProcess(float delta)

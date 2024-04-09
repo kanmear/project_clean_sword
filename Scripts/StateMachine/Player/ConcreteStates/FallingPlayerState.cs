@@ -19,6 +19,12 @@ public class FallingPlayerState : PlayerState
 
     public override void PhysicsProcess(float delta)
     {
+        if (Input.IsActionJustPressed("attack") && Player.IsAttackAvailable())
+        {
+            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
+            return;
+        }
+        
 	    if (Input.IsActionJustPressed("jump"))
 	    {
 		   if (Player.IsWallKickAvailable()) 

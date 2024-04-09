@@ -8,7 +8,6 @@ using StateMachine.Player.ConcreteStates;
 
 public partial class PlayerController : CharacterBody2D, IMovable
 {
-	[Export] private BladeAnimator bladeAnimator;
 	[Export] private Timer dashCooldownTimer;
 	[Export] private Timer attackCooldownTimer;
 	[Export] private Timer attackComboTimer;

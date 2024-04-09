@@ -5,11 +5,17 @@ namespace ProjectCleanSword.Scripts.Player;
 public partial class PlayerAnimator : AnimationPlayer
 {
 	[Export] private PlayerController playerController;
+	[Export] private BladeAnimator bladeAnimator;
+    
 	[Export] private Sprite2D sprite2D;
 
+	#region player animation stringnames
+    
 	private static readonly StringName Idle = "Idle";
-	private static readonly StringName IdleStatic = "IdleStatic";
+	// private static readonly StringName IdleStatic = "IdleStatic";
 	private static readonly StringName IdleFlipped = "IdleFlipped";
+    
+	private static readonly StringName Running = "Running";
     
 	private static readonly StringName Falling = "Falling";
 	private static readonly StringName FallingLoop = "FallingLoop";
@@ -19,6 +25,9 @@ public partial class PlayerAnimator : AnimationPlayer
 	private static readonly StringName RechargedJump = "RechargedJump";
 
 	private static readonly StringName AttackLand = "AttackLand";
+	private static readonly StringName AttackAir = "AttackAir";
+
+	#endregion
 
 	public override void _Process(double delta)
 	{
@@ -47,6 +56,8 @@ public partial class PlayerAnimator : AnimationPlayer
 		}
 		else
             Play(idleAnimation);
+        
+		// bladeAnimator.Play(Idle);
 	}
 
 	public void PlayFalling()
@@ -69,12 +80,27 @@ public partial class PlayerAnimator : AnimationPlayer
 
 	public void PlayLandAttack(int comboCount)
 	{
-		Play(AttackLand + $"{comboCount}");
+		var animationName = AttackLand + $"{comboCount}";
         
-		//TODO use separate animation player to animate blade
+		Play(animationName);
+		bladeAnimator.Play(animationName);
 	}
 
-	private void OnAnimationFinished(StringName animationName)
+	public void PlayAirAttack(int comboCount)
+	{
+		var animationName = AttackAir + $"{comboCount}";
+        
+		// Play(animationName);
+		bladeAnimator.Play(animationName);
+	}
+
+	public void PlayRunning()
+	{
+		Play(Running);
+		// bladeAnimator.Play(Running);
+	}
+
+	private void OnCurrentAnimationChanged(StringName animationName)
 	{
 		if (animationName.Equals(Wallkick) || animationName.Equals(RechargedJump))
 			SpeedScale = 1f;

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b50upnj3x7jfl"
-path="res://.godot/imported/ronin_attack.png-52e817a3aa1c7a7aaf1528494a95b3d7.ctex"
+uid="uid://40hvv4x41rrh"
+path="res://.godot/imported/ronin_attack_air_1.png-6f43102c5babe28774edba9347f1d9da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Player/ronin_attack.png"
-dest_files=["res://.godot/imported/ronin_attack.png-52e817a3aa1c7a7aaf1528494a95b3d7.ctex"]
+source_file="res://Sprites/Player/ronin_attack_air_1.png"
+dest_files=["res://.godot/imported/ronin_attack_air_1.png-6f43102c5babe28774edba9347f1d9da.ctex"]
 
 [params]
 

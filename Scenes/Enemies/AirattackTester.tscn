@@ -1,19 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://d04vl66q4our2"]
+[gd_scene load_steps=6 format=3 uid="uid://d04vl66q4our2"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/AirAttackTester.cs" id="1_dkgnl"]
 [ext_resource type="Texture2D" uid="uid://cs2n5nljknuc1" path="res://Sprites/Enemies/airattack_tester.png" id="1_hr78w"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/AirattackTester.gdshader" id="2_8d5hm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8h86c"]
 radius = 8.0
 
-[node name="AirattackTester" type="StaticBody2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0uima"]
+shader = ExtResource("2_8d5hm")
+shader_parameter/isWhite = null
+
+[node name="AirattackTester" type="StaticBody2D" node_paths=PackedStringArray("sprite", "collisionShape", "timerDisappear", "timerReappear")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_dkgnl")
+sprite = NodePath("Sprite2D")
+collisionShape = NodePath("CollisionShape2D")
+timerDisappear = NodePath("Timer_disappear")
+timerReappear = NodePath("Timer_reappear")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8h86c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_0uima")
 texture = ExtResource("1_hr78w")
+
+[node name="Timer_disappear" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Timer_reappear" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="Timer_disappear" to="." method="OnTimerDisappearTimeout"]
+[connection signal="timeout" from="Timer_reappear" to="." method="OnTimerReappearTimeout"]

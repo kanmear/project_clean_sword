@@ -94,5 +94,10 @@ public class JumpingPlayerState : PlayerState
 		}
 		
 	    Player.Move(velocity);
+        
+        if (Input.IsActionJustPressed("attack") && Player.IsAttackAvailable())
+        {
+            PlayerStateMachine.ChangeState(Player.AttackingPlayerState);
+        }
     }
 }

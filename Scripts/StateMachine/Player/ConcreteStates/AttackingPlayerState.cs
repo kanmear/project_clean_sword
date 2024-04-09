@@ -27,7 +27,10 @@ public class AttackingPlayerState : PlayerState
         velocity.X = Player.MovingSpeed * (0.3f * comboCount)
                      * (Player.IsFacingRight ? 1 : -1);
 
-        Animator.PlayLandAttack(comboCount);
+        if (Player.IsOnFloor())
+            Animator.PlayLandAttack(comboCount);
+        else
+            Animator.PlayAirAttack(comboCount);
     }
 
     public override void PhysicsProcess(float delta)

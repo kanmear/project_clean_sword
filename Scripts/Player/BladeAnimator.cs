@@ -4,8 +4,7 @@ namespace ProjectCleanSword.Scripts.Player;
 
 public partial class BladeAnimator : AnimationPlayer
 {
-	public void PlayAttack()
+	private void OnAnimationFinished(StringName animationName)
 	{
-		Play("attacking");
 	}
 }
