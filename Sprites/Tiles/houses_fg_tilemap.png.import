@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b74lot8nfiq2n"
-path="res://.godot/imported/BG-sky_wide_p.png-78ca0bca295862d9e81dba0ba15ba42b.ctex"
+uid="uid://dackbnvcus8ug"
+path="res://.godot/imported/houses_fg_tilemap.png-77a683f8763ca67f6366fd1cb28eb079.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/BG-sky_wide_p.png"
-dest_files=["res://.godot/imported/BG-sky_wide_p.png-78ca0bca295862d9e81dba0ba15ba42b.ctex"]
+source_file="res://Sprites/Tiles/houses_fg_tilemap.png"
+dest_files=["res://.godot/imported/houses_fg_tilemap.png-77a683f8763ca67f6366fd1cb28eb079.ctex"]
 
 [params]
 

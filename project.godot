@@ -93,6 +93,7 @@ spawn_grunt_DEBUG={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="level-wall"
+2d_physics/layer_5="level-platform"
 2d_physics/size/mode=3
 
 [physics]
